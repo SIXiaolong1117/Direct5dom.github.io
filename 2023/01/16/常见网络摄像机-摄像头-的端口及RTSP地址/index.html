@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.2">
+  <!--pjax：防止跳转页面音乐暂停-->
+  <script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.js"></script>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="ipqy_K21pfQuExk7eQlsanv9Vn88RSP-CBMztGB1hpI">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"direct5dom.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="转载自：常见网络摄像机(摄像头)的端口及RTSP地址 - 知乎 (zhihu.com)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常见网络摄像机(摄像头)的端口及RTSP地址">
+<meta property="og:url" content="https://direct5dom.github.io/2023/01/16/%E5%B8%B8%E8%A7%81%E7%BD%91%E7%BB%9C%E6%91%84%E5%83%8F%E6%9C%BA-%E6%91%84%E5%83%8F%E5%A4%B4-%E7%9A%84%E7%AB%AF%E5%8F%A3%E5%8F%8ARTSP%E5%9C%B0%E5%9D%80/index.html">
+<meta property="og:site_name" content="相逢在宇宙 0080">
+<meta property="og:description" content="转载自：常见网络摄像机(摄像头)的端口及RTSP地址 - 知乎 (zhihu.com)">
+<meta property="og:locale">
+<meta property="article:published_time" content="2023-01-16T10:35:29.000Z">
+<meta property="article:modified_time" content="2023-01-16T10:35:50.000Z">
+<meta property="article:author" content="司晓龙">
+<meta property="article:tag" content="监控">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://direct5dom.github.io/2023/01/16/%E5%B8%B8%E8%A7%81%E7%BD%91%E7%BB%9C%E6%91%84%E5%83%8F%E6%9C%BA-%E6%91%84%E5%83%8F%E5%A4%B4-%E7%9A%84%E7%AB%AF%E5%8F%A3%E5%8F%8ARTSP%E5%9C%B0%E5%9D%80/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+
+  <title>常见网络摄像机(摄像头)的端口及RTSP地址 | 相逢在宇宙 0080</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">相逢在宇宙 0080</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">司晓龙的个人博客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+
+  <script type="text/javascript" src="/Welcome/Welcome.js"></script>
+
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="https://github.com/Direct5dom" rel="noopener" target="_blank"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://direct5dom.github.io/2023/01/16/%E5%B8%B8%E8%A7%81%E7%BD%91%E7%BB%9C%E6%91%84%E5%83%8F%E6%9C%BA-%E6%91%84%E5%83%8F%E5%A4%B4-%E7%9A%84%E7%AB%AF%E5%8F%A3%E5%8F%8ARTSP%E5%9C%B0%E5%9D%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="司晓龙">
+      <meta itemprop="description" content="司晓龙的个人技术博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="相逢在宇宙 0080">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          常见网络摄像机(摄像头)的端口及RTSP地址
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2023-01-16 18:35:29 / Modified: 18:35:50" itemprop="dateCreated datePublished" datetime="2023-01-16T18:35:29+08:00">2023-01-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%9B%91%E6%8E%A7/" itemprop="url" rel="index"><span itemprop="name">监控</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>转载自：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/366528096">常见网络摄像机(摄像头)的端口及RTSP地址 - 知乎 (zhihu.com)</a></p>
+<span id="more"></span>
+<blockquote>
+<p>根据评论区反应，这写地址并不完全，有些过时。</p>
+<p>YOOSEE的可以成功连接我自己的监控，此博文只做备份。</p>
+</blockquote>
+<h2 id="海康威视">海康威视</h2>
+<p>默认IP地址：192.168.1.64/DHCP 用户名admin 密码自己设<br>
+端口：“HTTP 端口”(默认为 80)、“RTSP 端口”(默认为 554)、“HTTPS 端 口”(默认 443)和“服务端口”(默认 8000)，ONVIF端口 80。<br>
+RTSP地址：rtsp://[username]:[password]@[ip]:[port]/[codec]/[channel]/[subtype]/av_stream<br>
+说明：<br>
+username: 用户名。例如admin。<br>
+password: 密码。例如12345。<br>
+ip: 为设备IP。例如 192.0.0.64。<br>
+port: 端口号默认为554，若为默认可不填写。<br>
+codec：有h264、MPEG-4、mpeg4这几种。<br>
+channel: 通道号，起始为1。例如通道1，则为ch1。<br>
+subtype: 码流类型，主码流为main，辅码流为sub。<br>
+例如，请求海康摄像机通道1的主码流，Url如下<br>
+主码流：<br>
+rtsp://admin:12345@192.0.0.64:554/h264/ch1/main/av_stream<br>
+子码流：<br>
+rtsp://admin:12345@192.0.0.64/mpeg4/ch1/sub/av_stream</p>
+<h2 id="大华">大华</h2>
+<p>默认IP地址：192.168.1.108 用户名/密码：admin/admin<br>
+端口：TCP 端口 37777/UDP 端口 37778/http 端口 80/RTSP 端口号默认为 554/HTTPs 443/ONVIF 功能默认为关闭，端口80<br>
+RTSP地址：rtsp://username:password@ip:port/cam/realmonitor?channel=1&amp;subtype=0<br>
+说明:<br>
+username: 用户名。例如admin。<br>
+password: 密码。例如admin。<br>
+ip: 为设备IP。例如 10.7.8.122。<br>
+port: 端口号默认为554，若为默认可不填写。<br>
+channel: 通道号，起始为1。例如通道2，则为channel=2。<br>
+subtype: 码流类型，主码流为0(即subtype=0)，辅码流为1(即subtype=1)。<br>
+例如，请求某设备的通道2的辅码流，Url如下<br>
+rtsp://admin:admin@10.12.4.84:554/cam/realmonitor?channel=2&amp;subtype=1</p>
+<h2 id="雄迈-巨峰">雄迈/巨峰</h2>
+<p>默认IP地址：192.168.1.10 用户名admin 密码空<br>
+端口：TCP端口：34567 和 HTTP端口：80，onvif端口是8899<br>
+RTSP地址：rtsp://10.6.3.57:554/user=admin&amp;password=&amp;channel=1&amp;stream=0.sdp?<br>
+10.6.3.57这个是被连接的设备的IP<br>
+554这个是RTSP服务的端口号，可以在设备的网络服务里面更改<br>
+user=admin这个是设备的登录用户名<br>
+password= 密码空<br>
+channel=1 第一通道<br>
+stream=0.sdp？主码流<br>
+stream=1.sdp？副码流<br>
+图片抓拍地址：<a target="_blank" rel="noopener" href="http://ip/webcapture.jpg?command=snap&amp;channel=1">http://ip/webcapture.jpg?command=snap&amp;channel=1</a></p>
+<h2 id="天视通">天视通</h2>
+<p>默认IP地址：192.168.0.123 用户名admin 密码123456<br>
+端口：http端口80 数据端口8091 RTSP端口554 ONVIF端口 80<br>
+RTSP地址：主码流地址:rtsp://192.168.0.123:554/mpeg4<br>
+子码流地址:rtsp://192.168.0.123:554/mpeg4cif<br>
+需要入密码的地址： 主码流 rtsp://admin:123456@192.168.0.123:554/mpeg4<br>
+子码流 rtsp://admin:123456@192.168.0.123:554/mpeg4cif<br>
+图片抓拍地址：<a target="_blank" rel="noopener" href="http://ip/snapshot.cgi">http://ip/snapshot.cgi</a></p>
+<h2 id="中维-尚维">中维/尚维</h2>
+<p>默认IP地址：DHCP 默认用户名admin 默认密码 空<br>
+RTSP地址：rtsp://0.0.0.0:8554/live1.264(次码流)<br>
+rtsp://0.0.0.0:8554/live0.264 (主码流)</p>
+<h2 id="九安">九安</h2>
+<p>RTSP地址：rtsp://IP:port(website port)/ch0_0.264(主码流)<br>
+rtsp://IP:port(website port)/ch0_1.264(子码流)</p>
+<h2 id="技威-YOOSEE">技威/YOOSEE</h2>
+<p>默认IP地址：DHCP 用户名admin 密码123<br>
+RTSP地址：主码流：rtsp://IPadr:554/onvif1<br>
+次码流：rtsp://IPadr:554/onvif2<br>
+onvif端口是5000<br>
+设备发现的端口是3702</p>
+<h2 id="V380">V380</h2>
+<p>默认IP地址：DHCP 用户名admin 密码空/admin<br>
+onvif端口8899<br>
+RTSP地址：主码流rtsp://ip//live/ch00_1<br>
+子码流rtsp://ip//live/ch00_0</p>
+<h2 id="宇视">宇视</h2>
+<p>默认IP地址： 192.168.0.13/DHCP 默认用户名 admin 和默认密码 123456<br>
+端口：HTTP 80/RTSP 554/HTTPS 110(443)/onvif端口 80<br>
+RTSP地址：rtsp://用户名:密码@ip:端口号/video123 123对应3个码流</p>
+<h2 id="天地伟业">天地伟业</h2>
+<p>默认IP地址：192.168.1.2 用户名“Admin”、密码“1111”<br>
+onvif端口号“8080”<br>
+RTSP地址：rtsp：<a target="_blank" rel="noopener" href="//192.168.1.2">//192.168.1.2</a></p>
+<h2 id="巨龙-JVT">巨龙/JVT</h2>
+<p>默认IP地址：192.168.1.88 默认用户名 admin 默认密码admin<br>
+RTSP地址：<br>
+主码流地址:rtsp://IP地址/av0_0<br>
+次码流地址:rtsp://IP地址/av0_1<br>
+onvif端口 2000</p>
+<p>图片抓拍地址：<a target="_blank" rel="noopener" href="http://ip/capture/webCapture.jpg?channel=1&amp;FTpsend=0&amp;checkinfo=0">http://ip/capture/webCapture.jpg?channel=1&amp;FTpsend=0&amp;checkinfo=0</a><br>
+(<a target="_blank" rel="noopener" href="http://ip/cgi-bin/images_cgi?channel=1&amp;user=admin&amp;pwd=admin">http://ip/cgi-bin/images_cgi?channel=1&amp;user=admin&amp;pwd=admin</a>)<br>
+————————————————<br>
+版权声明：本文为CSDN博主「大白菜！」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>
+原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45061258/article/details/111399841">https://blog.csdn.net/qq_45061258/article/details/111399841</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%9B%91%E6%8E%A7/" rel="tag"># 监控</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/01/13/WinUI3%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E7%AA%97%E5%8F%A3%E5%A4%A7%E5%B0%8F/" rel="prev" title="WinUI3修改默认窗口大小">
+      <i class="fa fa-chevron-left"></i> WinUI3修改默认窗口大小
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/01/20/WinUI3%E4%BD%BF%E7%94%A8FilePicker%E5%92%8CFolderPicker/" rel="next" title="WinUI3使用FilePicker和FolderPicker">
+      WinUI3使用FilePicker和FolderPicker <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%B7%E5%BA%B7%E5%A8%81%E8%A7%86"><span class="nav-number">1.</span> <span class="nav-text">海康威视</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%A7%E5%8D%8E"><span class="nav-number">2.</span> <span class="nav-text">大华</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%84%E8%BF%88-%E5%B7%A8%E5%B3%B0"><span class="nav-number">3.</span> <span class="nav-text">雄迈&#x2F;巨峰</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%A9%E8%A7%86%E9%80%9A"><span class="nav-number">4.</span> <span class="nav-text">天视通</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AD%E7%BB%B4-%E5%B0%9A%E7%BB%B4"><span class="nav-number">5.</span> <span class="nav-text">中维&#x2F;尚维</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%9D%E5%AE%89"><span class="nav-number">6.</span> <span class="nav-text">九安</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%80%E5%A8%81-YOOSEE"><span class="nav-number">7.</span> <span class="nav-text">技威&#x2F;YOOSEE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#V380"><span class="nav-number">8.</span> <span class="nav-text">V380</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%87%E8%A7%86"><span class="nav-number">9.</span> <span class="nav-text">宇视</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%A9%E5%9C%B0%E4%BC%9F%E4%B8%9A"><span class="nav-number">10.</span> <span class="nav-text">天地伟业</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A8%E9%BE%99-JVT"><span class="nav-number">11.</span> <span class="nav-text">巨龙&#x2F;JVT</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="司晓龙"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">司晓龙</p>
+  <div class="site-description" itemprop="description">司晓龙的个人技术博客</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Direct5dom" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Direct5dom" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/SI_Xiaolong" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;SI_Xiaolong" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+      </div>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">司晓龙</span>
+</div>
+  <div class="powered-by">
+    <!--Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> -->Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT</a> & <a href="https://direct5dom.github.io/" class="theme-link">司晓龍</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
