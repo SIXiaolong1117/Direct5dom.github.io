@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://direct5dom.github.io/2023/05/13/Clash-for-Magisk%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B%EF%BC%88v3-5-1%EF%BC%89/</loc>
+    
+    <lastmod>2023-12-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://direct5dom.github.io/2023/09/23/%E5%A6%82%E4%BD%95%E5%9C%A8Microsoft-Store%E4%B8%AD%E5%8F%91%E5%B8%83%E5%BA%94%E7%94%A8/</loc>
     
     <lastmod>2023-09-23</lastmod>
@@ -14,15 +23,6 @@
     <loc>https://direct5dom.github.io/2023/06/06/OpenWRT%E9%85%8D%E7%BD%AEWebDAV%E7%9A%84%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B%EF%BC%88%E5%9F%BA%E4%BA%8ELighttpd%EF%BC%89/</loc>
     
     <lastmod>2023-09-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://direct5dom.github.io/2023/05/13/Clash-for-Magisk%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B%EF%BC%88v3-5-1%EF%BC%89/</loc>
-    
-    <lastmod>2023-08-24</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -499,7 +499,7 @@
 
   <url>
     <loc>https://direct5dom.github.io/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -507,266 +507,266 @@
   
   <url>
     <loc>https://direct5dom.github.io/tags/Android/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/tags/Root/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/tags/Electron/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/tags/Web/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/tags/hexo/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/tags/GitHub/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/tags/Linux/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/tags/zsh/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/tags/C/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/tags/CPP/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/tags/OpenWRT/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/tags/%E8%BD%AF%E8%B7%AF%E7%94%B1/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/tags/Git/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/tags/RDP/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/tags/Windows/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/tags/WSL/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/tags/WinUI/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/tags/CSharp/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/tags/Minecraft/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/tags/%E6%B8%B8%E6%88%8F/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/tags/Vue/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/tags/Vite/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/tags/Raspberry-Pi-OS/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/tags/%E5%8D%95%E7%89%87%E6%9C%BA/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/tags/ESP32/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/tags/CSS/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/tags/HTML/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/tags/WordPress/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/tags/Windows-Terminal/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/tags/%E7%9B%91%E6%8E%A7/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/tags/CSGO/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/tags/Renderer/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/tags/Microsoft-Store/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -775,112 +775,112 @@
   
   <url>
     <loc>https://direct5dom.github.io/categories/Android/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/categories/Electron/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/categories/hexo/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/categories/Linux/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/categories/Pro-Git-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/categories/Remote/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/categories/WSL/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/categories/WinUI/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E6%9C%8D/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/categories/Git/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/categories/%E5%8D%95%E7%89%87%E6%9C%BA/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/categories/HTML-CSS/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/categories/%E7%9B%91%E6%8E%A7/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://direct5dom.github.io/categories/TinyRenderer%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2023-09-23</lastmod>
+    <lastmod>2023-12-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
