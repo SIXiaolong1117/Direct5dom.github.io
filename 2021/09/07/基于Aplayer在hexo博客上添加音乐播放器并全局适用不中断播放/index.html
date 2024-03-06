@@ -22,13 +22,13 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"direct5dom.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"blog.sixiaolong.win","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="hexo博客建好了，除了视觉美化最好还有声觉美化，也就是BGM。早在当年QQ空间时代就已经开始弄BGM了，到了hexo这里自然不能落下。 今天用到的一个js组件是aplayer，一个非常漂亮好用的HTML5音乐播放器，和dplayer师出同门。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基于Aplayer在hexo博客上添加音乐播放器并全局适用不中断播放">
-<meta property="og:url" content="https://direct5dom.github.io/2021/09/07/%E5%9F%BA%E4%BA%8EAplayer%E5%9C%A8hexo%E5%8D%9A%E5%AE%A2%E4%B8%8A%E6%B7%BB%E5%8A%A0%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8%E5%B9%B6%E5%85%A8%E5%B1%80%E9%80%82%E7%94%A8%E4%B8%8D%E4%B8%AD%E6%96%AD%E6%92%AD%E6%94%BE/index.html">
+<meta property="og:url" content="https://blog.sixiaolong.win/2021/09/07/%E5%9F%BA%E4%BA%8EAplayer%E5%9C%A8hexo%E5%8D%9A%E5%AE%A2%E4%B8%8A%E6%B7%BB%E5%8A%A0%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8%E5%B9%B6%E5%85%A8%E5%B1%80%E9%80%82%E7%94%A8%E4%B8%8D%E4%B8%AD%E6%96%AD%E6%92%AD%E6%94%BE/index.html">
 <meta property="og:site_name" content="相逢在宇宙 0080">
 <meta property="og:description" content="hexo博客建好了，除了视觉美化最好还有声觉美化，也就是BGM。早在当年QQ空间时代就已经开始弄BGM了，到了hexo这里自然不能落下。 今天用到的一个js组件是aplayer，一个非常漂亮好用的HTML5音乐播放器，和dplayer师出同门。">
 <meta property="og:locale">
@@ -39,7 +39,7 @@
 <meta property="article:tag" content="博客搭建">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://direct5dom.github.io/2021/09/07/%E5%9F%BA%E4%BA%8EAplayer%E5%9C%A8hexo%E5%8D%9A%E5%AE%A2%E4%B8%8A%E6%B7%BB%E5%8A%A0%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8%E5%B9%B6%E5%85%A8%E5%B1%80%E9%80%82%E7%94%A8%E4%B8%8D%E4%B8%AD%E6%96%AD%E6%92%AD%E6%94%BE/">
+<link rel="canonical" href="https://blog.sixiaolong.win/2021/09/07/%E5%9F%BA%E4%BA%8EAplayer%E5%9C%A8hexo%E5%8D%9A%E5%AE%A2%E4%B8%8A%E6%B7%BB%E5%8A%A0%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8%E5%B9%B6%E5%85%A8%E5%B1%80%E9%80%82%E7%94%A8%E4%B8%8D%E4%B8%AD%E6%96%AD%E6%92%AD%E6%94%BE/">
 
 
 <script id="page-configurations">
@@ -206,7 +206,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://direct5dom.github.io/2021/09/07/%E5%9F%BA%E4%BA%8EAplayer%E5%9C%A8hexo%E5%8D%9A%E5%AE%A2%E4%B8%8A%E6%B7%BB%E5%8A%A0%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8%E5%B9%B6%E5%85%A8%E5%B1%80%E9%80%82%E7%94%A8%E4%B8%8D%E4%B8%AD%E6%96%AD%E6%92%AD%E6%94%BE/">
+    <link itemprop="mainEntityOfPage" href="https://blog.sixiaolong.win/2021/09/07/%E5%9F%BA%E4%BA%8EAplayer%E5%9C%A8hexo%E5%8D%9A%E5%AE%A2%E4%B8%8A%E6%B7%BB%E5%8A%A0%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8%E5%B9%B6%E5%85%A8%E5%B1%80%E9%80%82%E7%94%A8%E4%B8%8D%E4%B8%AD%E6%96%AD%E6%92%AD%E6%94%BE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -442,7 +442,7 @@
   <span class="author" itemprop="copyrightHolder">司晓龙</span>
 </div>
   <div class="powered-by">
-    <!--Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> -->Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT</a> & <a href="https://direct5dom.github.io/" class="theme-link">司晓龍</a>
+    <!--Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> -->Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT</a> & <a href="https://direct5dom.github.io/" class="theme-link" rel="noopener" target="_blank">司晓龍</a>
   </div>
 
         
