@@ -259,6 +259,7 @@
         <p><img src="https://github.com/Direct5dom/imageDB/blob/main/DB/13.png?raw=true" alt="13.png"></p>
 <p>更换成功的效果</p>
 <span id="more"></span>
+
 <p>作为树莓派的重度用户，能在越多的地方显示树莓派的状态信息当然是一件好事。</p>
 <p>控制树莓派登录欢迎信息的文件有两处</p>
 <ol>
@@ -267,12 +268,16 @@
 </ol>
 <p>新建一个欢迎脚本：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vim /etc/update-motd.d/11-info</span><br></pre></td></tr></table></figure>
+
 <p>部分源自 Adafruit 的开源项目修改而来（已停止维护）</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line">uptime | awk &#x27;&#123;printf(&quot;\nCPU Load: %.2f\t&quot;, $(NF-2))&#125;&#x27;</span><br><span class="line">free -m | awk &#x27;NR==2&#123;printf(&quot;Mem: %s/%sMB %.2f%%\n&quot;, $3,$2,$3*100/$2)&#125;&#x27;</span><br><span class="line">cat /sys/class/thermal/thermal_zone0/temp|awk &#x27;&#123;printf(&quot;CPU Temp: %.2f\t&quot;,$1/1000)&#125;&#x27;</span><br><span class="line">df -h | awk &#x27;$NF==&quot;/&quot;&#123;printf &quot;Disk: %.1f/%.1fGB %s\n\n&quot;, $3,$2,$5&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
 <p>添加执行权限：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo chmod +x /etc/update-motd.d/11-info</span><br></pre></td></tr></table></figure>
+
 <p>取消原始静态欢迎信息（可选）：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo mv /etc/motd /etc/motd.sample</span><br></pre></td></tr></table></figure>
+
 <p>更换后效果：</p>
 <p><img src="https://github.com/Direct5dom/imageDB/blob/main/DB/13.png?raw=true" alt="13.png"></p>
 <hr>

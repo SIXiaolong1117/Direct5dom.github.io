@@ -260,36 +260,37 @@
       
         <p>国内手机预装软件乱象越来越严重，预装且不能卸载的软件也越来越多。这些预装的软件可能到手机报废都不会点开，但是其隐私问题、安全问题确实不可忽视的。恰逢最近软件洁癖犯了，便顺手清理了手头两部手机（小米11、荣耀V20）的全部用不到的预装软件。</p>
 <span id="more"></span>
-<h2 id="准备工作">准备工作</h2>
-<h3 id="ADB"><code>ADB</code></h3>
-<p>Android调试桥（Android Debug Bridge，简称ADB）是用于链接Android手机进行开发调试的工具。其随Android Studio附带，也可单独部署使用。</p>
+
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="ADB"><a href="#ADB" class="headerlink" title="ADB"></a><code>ADB</code></h3><p>Android调试桥（Android Debug Bridge，简称ADB）是用于链接Android手机进行开发调试的工具。其随Android Studio附带，也可单独部署使用。</p>
 <p>下载链接：<a target="_blank" rel="noopener" href="https://source.android.google.cn/setup/build/adb?hl=zh-cn#download-adb">Android 调试桥 (ADB)  | Android Open Source Project</a></p>
-<h3 id="手机开发者模式">手机开发者模式</h3>
-<p>进入手机的<code>设置</code> -&gt; <code>系统</code> -&gt; <code>关于手机</code> -&gt; 连续点击手机的版本号即可解锁。</p>
+<h3 id="手机开发者模式"><a href="#手机开发者模式" class="headerlink" title="手机开发者模式"></a>手机开发者模式</h3><p>进入手机的<code>设置</code> -&gt; <code>系统</code> -&gt; <code>关于手机</code> -&gt; 连续点击手机的版本号即可解锁。</p>
 <p>然后在手机的<code>设置</code> -&gt; <code>开发者选项</code>中，开启<code>USB调试</code>。</p>
 <p>然后将手机通过USB数据线连接到电脑。</p>
-<h3 id="连接设备">连接设备</h3>
-<p>使用ADB命令：</p>
+<h3 id="连接设备"><a href="#连接设备" class="headerlink" title="连接设备"></a>连接设备</h3><p>使用ADB命令：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb devices</span><br></pre></td></tr></table></figure>
+
 <p>并收到类似下方提示代表成功：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">adb devices</span><br><span class="line">List of devices attached</span><br><span class="line">3c272e2e        device</span><br></pre></td></tr></table></figure>
-<h3 id="监控软件动态">监控软件动态</h3>
-<p>ADB命令卸载软件是通过软件包名来识别的，软件包名并非软件名，因此我们需要通过监视器命令来获取：</p>
+
+<h3 id="监控软件动态"><a href="#监控软件动态" class="headerlink" title="监控软件动态"></a>监控软件动态</h3><p>ADB命令卸载软件是通过软件包名来识别的，软件包名并非软件名，因此我们需要通过监视器命令来获取：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell am monitor</span><br></pre></td></tr></table></figure>
+
 <p>当你输入完以上命令后，随便运行一个软件，其运行状态和包名就会显示出来：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Monitoring activity manager...  available commands:</span><br><span class="line">(q)uit: finish monitoring</span><br><span class="line">** Activity starting: com.miui.player</span><br><span class="line">** Activity starting: com.miui.player</span><br><span class="line">** Activity starting: com.miui.player</span><br><span class="line">** Activity starting: com.miui.player</span><br><span class="line">** Activity resuming: com.miui.player</span><br></pre></td></tr></table></figure>
-<h3 id="卸载软件">卸载软件</h3>
-<p>使用ADB命令：</p>
+
+<h3 id="卸载软件"><a href="#卸载软件" class="headerlink" title="卸载软件"></a>卸载软件</h3><p>使用ADB命令：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell pm uninstall --user 0 &lt;软件包名&gt;</span><br></pre></td></tr></table></figure>
+
 <p>如果输入后回复<code>Success</code>，则代表卸载成功。</p>
 <hr>
-<h2 id="多个设备的情况">多个设备的情况</h2>
-<p>在连接设备的时候可能出现有多个设备的情况：</p>
+<h2 id="多个设备的情况"><a href="#多个设备的情况" class="headerlink" title="多个设备的情况"></a>多个设备的情况</h2><p>在连接设备的时候可能出现有多个设备的情况：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">adb devices</span><br><span class="line">List of devices attached</span><br><span class="line">3c272e2e        device        # 手机</span><br><span class="line">127.0.0.1:58526 device        # WSA</span><br></pre></td></tr></table></figure>
+
 <p>这就要求我们在之后的命令中指明对哪个设备进行操纵，例如：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb -s 3c272e2e shell am monitor</span><br></pre></td></tr></table></figure>
-<h2 id="列出所有应用">列出所有应用</h2>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell pm list packages</span><br></pre></td></tr></table></figure>
+
+<h2 id="列出所有应用"><a href="#列出所有应用" class="headerlink" title="列出所有应用"></a>列出所有应用</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell pm list packages</span><br></pre></td></tr></table></figure>
+
 
     </div>
 

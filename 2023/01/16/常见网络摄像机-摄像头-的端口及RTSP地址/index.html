@@ -254,97 +254,23 @@
       
         <p>转载自：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/366528096">常见网络摄像机(摄像头)的端口及RTSP地址 - 知乎 (zhihu.com)</a></p>
 <span id="more"></span>
+
 <blockquote>
 <p>根据评论区反应，这写地址并不完全，有些过时。</p>
 <p>YOOSEE的可以成功连接我自己的监控，此博文只做备份。</p>
 </blockquote>
-<h2 id="海康威视">海康威视</h2>
-<p>默认IP地址：192.168.1.64/DHCP 用户名admin 密码自己设<br>
-端口：“HTTP 端口”(默认为 80)、“RTSP 端口”(默认为 554)、“HTTPS 端 口”(默认 443)和“服务端口”(默认 8000)，ONVIF端口 80。<br>
-RTSP地址：rtsp://[username]:[password]@[ip]:[port]/[codec]/[channel]/[subtype]/av_stream<br>
-说明：<br>
-username: 用户名。例如admin。<br>
-password: 密码。例如12345。<br>
-ip: 为设备IP。例如 192.0.0.64。<br>
-port: 端口号默认为554，若为默认可不填写。<br>
-codec：有h264、MPEG-4、mpeg4这几种。<br>
-channel: 通道号，起始为1。例如通道1，则为ch1。<br>
-subtype: 码流类型，主码流为main，辅码流为sub。<br>
-例如，请求海康摄像机通道1的主码流，Url如下<br>
-主码流：<br>
-rtsp://admin:12345@192.0.0.64:554/h264/ch1/main/av_stream<br>
-子码流：<br>
-rtsp://admin:12345@192.0.0.64/mpeg4/ch1/sub/av_stream</p>
-<h2 id="大华">大华</h2>
-<p>默认IP地址：192.168.1.108 用户名/密码：admin/admin<br>
-端口：TCP 端口 37777/UDP 端口 37778/http 端口 80/RTSP 端口号默认为 554/HTTPs 443/ONVIF 功能默认为关闭，端口80<br>
-RTSP地址：rtsp://username:password@ip:port/cam/realmonitor?channel=1&amp;subtype=0<br>
-说明:<br>
-username: 用户名。例如admin。<br>
-password: 密码。例如admin。<br>
-ip: 为设备IP。例如 10.7.8.122。<br>
-port: 端口号默认为554，若为默认可不填写。<br>
-channel: 通道号，起始为1。例如通道2，则为channel=2。<br>
-subtype: 码流类型，主码流为0(即subtype=0)，辅码流为1(即subtype=1)。<br>
-例如，请求某设备的通道2的辅码流，Url如下<br>
-rtsp://admin:admin@10.12.4.84:554/cam/realmonitor?channel=2&amp;subtype=1</p>
-<h2 id="雄迈-巨峰">雄迈/巨峰</h2>
-<p>默认IP地址：192.168.1.10 用户名admin 密码空<br>
-端口：TCP端口：34567 和 HTTP端口：80，onvif端口是8899<br>
-RTSP地址：rtsp://10.6.3.57:554/user=admin&amp;password=&amp;channel=1&amp;stream=0.sdp?<br>
-10.6.3.57这个是被连接的设备的IP<br>
-554这个是RTSP服务的端口号，可以在设备的网络服务里面更改<br>
-user=admin这个是设备的登录用户名<br>
-password= 密码空<br>
-channel=1 第一通道<br>
-stream=0.sdp？主码流<br>
-stream=1.sdp？副码流<br>
-图片抓拍地址：<a target="_blank" rel="noopener" href="http://ip/webcapture.jpg?command=snap&amp;channel=1">http://ip/webcapture.jpg?command=snap&amp;channel=1</a></p>
-<h2 id="天视通">天视通</h2>
-<p>默认IP地址：192.168.0.123 用户名admin 密码123456<br>
-端口：http端口80 数据端口8091 RTSP端口554 ONVIF端口 80<br>
-RTSP地址：主码流地址:rtsp://192.168.0.123:554/mpeg4<br>
-子码流地址:rtsp://192.168.0.123:554/mpeg4cif<br>
-需要入密码的地址： 主码流 rtsp://admin:123456@192.168.0.123:554/mpeg4<br>
-子码流 rtsp://admin:123456@192.168.0.123:554/mpeg4cif<br>
-图片抓拍地址：<a target="_blank" rel="noopener" href="http://ip/snapshot.cgi">http://ip/snapshot.cgi</a></p>
-<h2 id="中维-尚维">中维/尚维</h2>
-<p>默认IP地址：DHCP 默认用户名admin 默认密码 空<br>
-RTSP地址：rtsp://0.0.0.0:8554/live1.264(次码流)<br>
-rtsp://0.0.0.0:8554/live0.264 (主码流)</p>
-<h2 id="九安">九安</h2>
-<p>RTSP地址：rtsp://IP:port(website port)/ch0_0.264(主码流)<br>
-rtsp://IP:port(website port)/ch0_1.264(子码流)</p>
-<h2 id="技威-YOOSEE">技威/YOOSEE</h2>
-<p>默认IP地址：DHCP 用户名admin 密码123<br>
-RTSP地址：主码流：rtsp://IPadr:554/onvif1<br>
-次码流：rtsp://IPadr:554/onvif2<br>
-onvif端口是5000<br>
-设备发现的端口是3702</p>
-<h2 id="V380">V380</h2>
-<p>默认IP地址：DHCP 用户名admin 密码空/admin<br>
-onvif端口8899<br>
-RTSP地址：主码流rtsp://ip//live/ch00_1<br>
-子码流rtsp://ip//live/ch00_0</p>
-<h2 id="宇视">宇视</h2>
-<p>默认IP地址： 192.168.0.13/DHCP 默认用户名 admin 和默认密码 123456<br>
-端口：HTTP 80/RTSP 554/HTTPS 110(443)/onvif端口 80<br>
-RTSP地址：rtsp://用户名:密码@ip:端口号/video123 123对应3个码流</p>
-<h2 id="天地伟业">天地伟业</h2>
-<p>默认IP地址：192.168.1.2 用户名“Admin”、密码“1111”<br>
-onvif端口号“8080”<br>
-RTSP地址：rtsp：<a target="_blank" rel="noopener" href="//192.168.1.2">//192.168.1.2</a></p>
-<h2 id="巨龙-JVT">巨龙/JVT</h2>
-<p>默认IP地址：192.168.1.88 默认用户名 admin 默认密码admin<br>
-RTSP地址：<br>
-主码流地址:rtsp://IP地址/av0_0<br>
-次码流地址:rtsp://IP地址/av0_1<br>
-onvif端口 2000</p>
-<p>图片抓拍地址：<a target="_blank" rel="noopener" href="http://ip/capture/webCapture.jpg?channel=1&amp;FTpsend=0&amp;checkinfo=0">http://ip/capture/webCapture.jpg?channel=1&amp;FTpsend=0&amp;checkinfo=0</a><br>
-(<a target="_blank" rel="noopener" href="http://ip/cgi-bin/images_cgi?channel=1&amp;user=admin&amp;pwd=admin">http://ip/cgi-bin/images_cgi?channel=1&amp;user=admin&amp;pwd=admin</a>)<br>
-————————————————<br>
-版权声明：本文为CSDN博主「大白菜！」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>
-原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45061258/article/details/111399841">https://blog.csdn.net/qq_45061258/article/details/111399841</a></p>
+<h2 id="海康威视"><a href="#海康威视" class="headerlink" title="海康威视"></a>海康威视</h2><p>默认IP地址：192.168.1.64&#x2F;DHCP 用户名admin 密码自己设<br>端口：“HTTP 端口”(默认为 80)、“RTSP 端口”(默认为 554)、“HTTPS 端 口”(默认 443)和“服务端口”(默认 8000)，ONVIF端口 80。<br>RTSP地址：rtsp:&#x2F;&#x2F;[username]:[password]@[ip]:[port]&#x2F;[codec]&#x2F;[channel]&#x2F;[subtype]&#x2F;av_stream<br>说明：<br>username: 用户名。例如admin。<br>password: 密码。例如12345。<br>ip: 为设备IP。例如 192.0.0.64。<br>port: 端口号默认为554，若为默认可不填写。<br>codec：有h264、MPEG-4、mpeg4这几种。<br>channel: 通道号，起始为1。例如通道1，则为ch1。<br>subtype: 码流类型，主码流为main，辅码流为sub。<br>例如，请求海康摄像机通道1的主码流，Url如下<br>主码流：<br>rtsp:&#x2F;&#x2F;admin:<a href="mailto:&#49;&#x32;&#x33;&#x34;&#x35;&#x40;&#x31;&#57;&#x32;&#x2e;&#x30;&#46;&#x30;&#x2e;&#x36;&#x34;">&#49;&#x32;&#x33;&#x34;&#x35;&#x40;&#x31;&#57;&#x32;&#x2e;&#x30;&#46;&#x30;&#x2e;&#x36;&#x34;</a>:554&#x2F;h264&#x2F;ch1&#x2F;main&#x2F;av_stream<br>子码流：<br>rtsp:&#x2F;&#x2F;admin:<a href="mailto:&#49;&#50;&#x33;&#x34;&#x35;&#64;&#x31;&#x39;&#50;&#x2e;&#x30;&#46;&#x30;&#46;&#54;&#x34;">&#49;&#50;&#x33;&#x34;&#x35;&#64;&#x31;&#x39;&#50;&#x2e;&#x30;&#46;&#x30;&#46;&#54;&#x34;</a>&#x2F;mpeg4&#x2F;ch1&#x2F;sub&#x2F;av_stream</p>
+<h2 id="大华"><a href="#大华" class="headerlink" title="大华"></a>大华</h2><p>默认IP地址：192.168.1.108 用户名&#x2F;密码：admin&#x2F;admin<br>端口：TCP 端口 37777&#x2F;UDP 端口 37778&#x2F;http 端口 80&#x2F;RTSP 端口号默认为 554&#x2F;HTTPs 443&#x2F;ONVIF 功能默认为关闭，端口80<br>RTSP地址：rtsp:&#x2F;&#x2F;username:password@ip:port&#x2F;cam&#x2F;realmonitor?channel&#x3D;1&amp;subtype&#x3D;0<br>说明:<br>username: 用户名。例如admin。<br>password: 密码。例如admin。<br>ip: 为设备IP。例如 10.7.8.122。<br>port: 端口号默认为554，若为默认可不填写。<br>channel: 通道号，起始为1。例如通道2，则为channel&#x3D;2。<br>subtype: 码流类型，主码流为0(即subtype&#x3D;0)，辅码流为1(即subtype&#x3D;1)。<br>例如，请求某设备的通道2的辅码流，Url如下<br>rtsp:&#x2F;&#x2F;admin:<a href="mailto:&#x61;&#100;&#109;&#x69;&#x6e;&#64;&#x31;&#48;&#x2e;&#x31;&#50;&#46;&#52;&#46;&#56;&#52;">&#x61;&#100;&#109;&#x69;&#x6e;&#64;&#x31;&#48;&#x2e;&#x31;&#50;&#46;&#52;&#46;&#56;&#52;</a>:554&#x2F;cam&#x2F;realmonitor?channel&#x3D;2&amp;subtype&#x3D;1</p>
+<h2 id="雄迈-巨峰"><a href="#雄迈-巨峰" class="headerlink" title="雄迈&#x2F;巨峰"></a>雄迈&#x2F;巨峰</h2><p>默认IP地址：192.168.1.10 用户名admin 密码空<br>端口：TCP端口：34567 和 HTTP端口：80，onvif端口是8899<br>RTSP地址：rtsp:&#x2F;&#x2F;10.6.3.57:554&#x2F;user&#x3D;admin&amp;password&#x3D;&amp;channel&#x3D;1&amp;stream&#x3D;0.sdp?<br>10.6.3.57这个是被连接的设备的IP<br>554这个是RTSP服务的端口号，可以在设备的网络服务里面更改<br>user&#x3D;admin这个是设备的登录用户名<br>password&#x3D; 密码空<br>channel&#x3D;1 第一通道<br>stream&#x3D;0.sdp？主码流<br>stream&#x3D;1.sdp？副码流<br>图片抓拍地址：<a target="_blank" rel="noopener" href="http://ip/webcapture.jpg?command=snap&channel=1">http://ip/webcapture.jpg?command=snap&amp;channel=1</a></p>
+<h2 id="天视通"><a href="#天视通" class="headerlink" title="天视通"></a>天视通</h2><p>默认IP地址：192.168.0.123 用户名admin 密码123456<br>端口：http端口80 数据端口8091 RTSP端口554 ONVIF端口 80<br>RTSP地址：主码流地址:rtsp:&#x2F;&#x2F;192.168.0.123:554&#x2F;mpeg4<br>子码流地址:rtsp:&#x2F;&#x2F;192.168.0.123:554&#x2F;mpeg4cif<br>需要入密码的地址： 主码流 rtsp:&#x2F;&#x2F;admin:<a href="mailto:&#49;&#x32;&#51;&#x34;&#53;&#x36;&#64;&#x31;&#57;&#x32;&#x2e;&#49;&#54;&#56;&#46;&#48;&#x2e;&#x31;&#x32;&#x33;">&#49;&#x32;&#51;&#x34;&#53;&#x36;&#64;&#x31;&#57;&#x32;&#x2e;&#49;&#54;&#56;&#46;&#48;&#x2e;&#x31;&#x32;&#x33;</a>:554&#x2F;mpeg4<br>子码流 rtsp:&#x2F;&#x2F;admin:<a href="mailto:&#x31;&#x32;&#51;&#x34;&#x35;&#x36;&#64;&#x31;&#x39;&#x32;&#x2e;&#x31;&#x36;&#x38;&#x2e;&#48;&#46;&#49;&#50;&#51;">&#x31;&#x32;&#51;&#x34;&#x35;&#x36;&#64;&#x31;&#x39;&#x32;&#x2e;&#x31;&#x36;&#x38;&#x2e;&#48;&#46;&#49;&#50;&#51;</a>:554&#x2F;mpeg4cif<br>图片抓拍地址：<a target="_blank" rel="noopener" href="http://ip/snapshot.cgi">http://ip/snapshot.cgi</a></p>
+<h2 id="中维-尚维"><a href="#中维-尚维" class="headerlink" title="中维&#x2F;尚维"></a>中维&#x2F;尚维</h2><p>默认IP地址：DHCP 默认用户名admin 默认密码 空<br>RTSP地址：rtsp:&#x2F;&#x2F;0.0.0.0:8554&#x2F;live1.264(次码流)<br>rtsp:&#x2F;&#x2F;0.0.0.0:8554&#x2F;live0.264 (主码流)</p>
+<h2 id="九安"><a href="#九安" class="headerlink" title="九安"></a>九安</h2><p>RTSP地址：rtsp:&#x2F;&#x2F;IP:port(website port)&#x2F;ch0_0.264(主码流)<br>rtsp:&#x2F;&#x2F;IP:port(website port)&#x2F;ch0_1.264(子码流)</p>
+<h2 id="技威-YOOSEE"><a href="#技威-YOOSEE" class="headerlink" title="技威&#x2F;YOOSEE"></a>技威&#x2F;YOOSEE</h2><p>默认IP地址：DHCP 用户名admin 密码123<br>RTSP地址：主码流：rtsp:&#x2F;&#x2F;IPadr:554&#x2F;onvif1<br>次码流：rtsp:&#x2F;&#x2F;IPadr:554&#x2F;onvif2<br>onvif端口是5000<br>设备发现的端口是3702</p>
+<h2 id="V380"><a href="#V380" class="headerlink" title="V380"></a>V380</h2><p>默认IP地址：DHCP 用户名admin 密码空&#x2F;admin<br>onvif端口8899<br>RTSP地址：主码流rtsp:&#x2F;&#x2F;ip&#x2F;&#x2F;live&#x2F;ch00_1<br>子码流rtsp:&#x2F;&#x2F;ip&#x2F;&#x2F;live&#x2F;ch00_0</p>
+<h2 id="宇视"><a href="#宇视" class="headerlink" title="宇视"></a>宇视</h2><p>默认IP地址： 192.168.0.13&#x2F;DHCP 默认用户名 admin 和默认密码 123456<br>端口：HTTP 80&#x2F;RTSP 554&#x2F;HTTPS 110(443)&#x2F;onvif端口 80<br>RTSP地址：rtsp:&#x2F;&#x2F;用户名:密码@ip:端口号&#x2F;video123 123对应3个码流</p>
+<h2 id="天地伟业"><a href="#天地伟业" class="headerlink" title="天地伟业"></a>天地伟业</h2><p>默认IP地址：192.168.1.2 用户名“Admin”、密码“1111”<br>onvif端口号“8080”<br>RTSP地址：rtsp：&#x2F;&#x2F;192.168.1.2</p>
+<h2 id="巨龙-JVT"><a href="#巨龙-JVT" class="headerlink" title="巨龙&#x2F;JVT"></a>巨龙&#x2F;JVT</h2><p>默认IP地址：192.168.1.88 默认用户名 admin 默认密码admin<br>RTSP地址：<br>主码流地址:rtsp:&#x2F;&#x2F;IP地址&#x2F;av0_0<br>次码流地址:rtsp:&#x2F;&#x2F;IP地址&#x2F;av0_1<br>onvif端口 2000</p>
+<p>图片抓拍地址：<a target="_blank" rel="noopener" href="http://ip/capture/webCapture.jpg?channel=1&FTpsend=0&checkinfo=0">http://ip/capture/webCapture.jpg?channel=1&amp;FTpsend=0&amp;checkinfo=0</a><br>(<a target="_blank" rel="noopener" href="http://ip/cgi-bin/images_cgi?channel=1&user=admin&pwd=admin">http://ip/cgi-bin/images_cgi?channel=1&amp;user=admin&amp;pwd=admin</a>)<br>————————————————<br>版权声明：本文为CSDN博主「大白菜！」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45061258/article/details/111399841">https://blog.csdn.net/qq_45061258/article/details/111399841</a></p>
 
     </div>
 
