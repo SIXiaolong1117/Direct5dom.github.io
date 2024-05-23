@@ -251,12 +251,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><img src="https://github.com/NVlabs/instant-ngp/raw/master/docs/assets_readme/robot5.gif"></p>
+        <p><img src="https://github.com/NVlabs/instant-ngp/raw/master/docs/assets_readme/robot5.gif" alt=""></p>
 <p>项目官网：<a target="_blank" rel="noopener" href="https://nvlabs.github.io/instant-ngp/">Instant Neural Graphics Primitives with a Multiresolution Hash Encoding</a></p>
-<p>项目Repo：<a target="_blank" rel="noopener" href="https://github.com/NVlabs/instant-ngp">NVlabs&#x2F;instant-ngp</a></p>
+<p>项目Repo：<a target="_blank" rel="noopener" href="https://github.com/NVlabs/instant-ngp">NVlabs/instant-ngp</a></p>
 <p>Paper：<a target="_blank" rel="noopener" href="https://nvlabs.github.io/instant-ngp/assets/mueller2022instant.pdf">Instant Neural Graphics Primitives with a Multiresolution Hash Encoding</a></p>
 <span id="more"></span>
-
 <p>按照官网的介绍，instant-ngp可以用在四个领域：</p>
 <ul>
 <li>Neural gigapixel images</li>
@@ -268,25 +267,31 @@
 <blockquote>
 <p>实际上官方的<a target="_blank" rel="noopener" href="https://github.com/NVlabs/instant-ngp/blob/master/README.md">README</a>和<a target="_blank" rel="noopener" href="https://github.com/NVlabs/instant-ngp/blob/master/docs/nerf_dataset_tips.md">Tips</a>都很全面，可以作为先行参考。</p>
 </blockquote>
-<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><h3 id="直接使用Releases"><a href="#直接使用Releases" class="headerlink" title="直接使用Releases"></a>直接使用Releases</h3><p>项目官方已经提供了构建好的，为Windows平台准备的Releases，可以在<a target="_blank" rel="noopener" href="https://github.com/NVlabs/instant-ngp/releases">NVlabs&#x2F;instant-ngp - Releases</a>中找到。</p>
+<h2 id="准备">准备</h2>
+<h3 id="直接使用Releases">直接使用Releases</h3>
+<p>项目官方已经提供了构建好的，为Windows平台准备的Releases，可以在<a target="_blank" rel="noopener" href="https://github.com/NVlabs/instant-ngp/releases">NVlabs/instant-ngp - Releases</a>中找到。</p>
 <p>分别是：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://github.com/NVlabs/instant-ngp/releases/download/continuous/Instant-NGP-for-RTX-3000-and-4000.zip">RTX 3000 和 4000 系列、RTX A4000–A6000 以及其他 Ampere 和 Ada 卡</a>；</li>
 <li><a target="_blank" rel="noopener" href="https://github.com/NVlabs/instant-ngp/releases/download/continuous/Instant-NGP-for-RTX-2000.zip">RTX 2000 系列、Titan RTX、Quadro RTX 4000–8000 和其他 Turing 卡</a></li>
 <li><a target="_blank" rel="noopener" href="https://github.com/NVlabs/instant-ngp/releases/download/continuous/Instant-NGP-for-GTX-1000.zip">GTX 1000 系列、Titan Xp、Quadro P1000–P6000 和其他 Pascal 卡</a></li>
 </ul>
-<h3 id="自己构建"><a href="#自己构建" class="headerlink" title="自己构建"></a>自己构建</h3><p>如果使用Linux，或者想用Python binding，或者Releases中没有你所使用的GPU，那么可以<a target="_blank" rel="noopener" href="https://github.com/NVlabs/instant-ngp#building-instant-ngp-windows--linux">自己来构建instant-ngp项目</a>。</p>
+<h3 id="自己构建">自己构建</h3>
+<p>如果使用Linux，或者想用Python binding，或者Releases中没有你所使用的GPU，那么可以<a target="_blank" rel="noopener" href="https://github.com/NVlabs/instant-ngp#building-instant-ngp-windows--linux">自己来构建instant-ngp项目</a>。</p>
 <blockquote>
 <p>因为我没有Linux下构建过此项目，因此这里省略Linux的部分，需要的可以直接去看官方<a target="_blank" rel="noopener" href="https://github.com/NVlabs/instant-ngp#building-instant-ngp-windows--linux">README</a>。</p>
 </blockquote>
-<h4 id="环境要求"><a href="#环境要求" class="headerlink" title="环境要求"></a>环境要求</h4><ul>
+<h4 id="环境要求">环境要求</h4>
+<ul>
 <li>一块NVIDIA GPU；如果拥有Tensor Core可以提高性能。官方Repo所有显示的结果均来自RTX 3090；</li>
-<li>支持 C++14 的编译器。官方推荐并测试了以下选择：<ul>
+<li>支持 C++14 的编译器。官方推荐并测试了以下选择：
+<ul>
 <li>Windows: Visual Studio 2019或2022；</li>
-<li>Linux: GCC&#x2F;G++ 8或更高。</li>
+<li>Linux: GCC/G++ 8或更高。</li>
 </ul>
 </li>
-<li>最新版本的<a target="_blank" rel="noopener" href="https://developer.nvidia.com/cuda-toolkit">CUDA</a>。官方推荐并测试了以下选项：<ul>
+<li>最新版本的<a target="_blank" rel="noopener" href="https://developer.nvidia.com/cuda-toolkit">CUDA</a>。官方推荐并测试了以下选项：
+<ul>
 <li>Windows: CUDA 11.5或更高；</li>
 <li>Linux: CUDA 10.2或更高；</li>
 </ul>
@@ -296,38 +301,45 @@
 <li>【可选的】<a target="_blank" rel="noopener" href="https://developer.nvidia.com/optix">OptiX</a> 7.6或更高版本用于更快的网格SDF训练；</li>
 <li>【可选的】用于支持启用DLSS的<a target="_blank" rel="noopener" href="https://vulkan.lunarg.com/">Vulkan SDK</a>。</li>
 </ul>
-<h4 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h4><p>克隆instant-ngp的Repo，并进入目录：</p>
+<h4 id="构建">构建</h4>
+<p>克隆instant-ngp的Repo，并进入目录：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> --recursive https://github.com/nvlabs/instant-ngp</span><br><span class="line"><span class="built_in">cd</span> instant-ngp</span><br></pre></td></tr></table></figure>
-
 <p>在instant-ngp目录下，使用cmake构建项目：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cmake . -B build</span><br><span class="line">cmake --build build --config RelWithDebInfo -j</span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>Windows平台需要使用Visual Studio的<a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/cpp/build/building-on-the-command-line?view=msvc-160#developer_command_prompt">developer command prompt</a>。</p>
 </blockquote>
-<h2 id="训练前准备"><a href="#训练前准备" class="headerlink" title="训练前准备"></a>训练前准备</h2><h3 id="相机位置数据"><a href="#相机位置数据" class="headerlink" title="相机位置数据"></a>相机位置数据</h3><p>NVlabs的instant-ngp的NeRF部分与原始NeRF代码兼容，都是使用<code>transforms.json</code>记录初始相机参数。</p>
-<p>但是考虑到大多数人的设备可能只有一个摄像机&#x2F;手机摄像头，因此NVlabs提供了一个脚本：<a target="_blank" rel="noopener" href="https://github.com/NVlabs/instant-ngp/blob/master/scripts/colmap2nerf.py"><code>scripts/colmap2nerf.py</code></a>，使用开源项目<a target="_blank" rel="noopener" href="https://colmap.github.io/">COLMAP</a>来处理视频文件或图像序列，来生成项目必要的相机位置数据。</p>
+<h2 id="训练前准备">训练前准备</h2>
+<h3 id="相机位置数据">相机位置数据</h3>
+<p>NVlabs的instant-ngp的NeRF部分与原始NeRF代码兼容，都是使用<code>transforms.json</code>记录初始相机参数。</p>
+<p>但是考虑到大多数人的设备可能只有一个摄像机/手机摄像头，因此NVlabs提供了一个脚本：<a target="_blank" rel="noopener" href="https://github.com/NVlabs/instant-ngp/blob/master/scripts/colmap2nerf.py"><code>scripts/colmap2nerf.py</code></a>，使用开源项目<a target="_blank" rel="noopener" href="https://colmap.github.io/">COLMAP</a>来处理视频文件或图像序列，来生成项目必要的相机位置数据。</p>
 <blockquote>
 <p>除此之外，还可以使用基于ARKit的Record3D来获取相机数据，但这要求你有一台iPhone 12以上的iPhone。根据NVlabs的说法，对于缺少纹理或包含重复内容的场景，使用Record3D要比COLMAP更加强大。</p>
 <blockquote>
 <p>然而可惜我并没有iPhone，因此这部分并不会写到本博文。如有需要，参考：<a target="_blank" rel="noopener" href="https://github.com/NVlabs/instant-ngp/blob/master/docs/nerf_dataset_tips.md#record3d">Record3D</a></p>
 </blockquote>
 </blockquote>
-<h3 id="模型对训练数据的挑剔"><a href="#模型对训练数据的挑剔" class="headerlink" title="模型对训练数据的挑剔"></a>模型对训练数据的挑剔</h3><p>训练过程对数据集是有一定要求的：</p>
+<h3 id="模型对训练数据的挑剔">模型对训练数据的挑剔</h3>
+<p>训练过程对数据集是有一定要求的：</p>
 <ul>
 <li>数据集必须有良好的覆盖范围，即重建的主体必须有足够的数据覆盖；</li>
 <li>不包含错误的相机位置数据以及模糊的帧（运动模糊和散焦模糊），这些都会对结果造成致命性的影响；</li>
 </ul>
 <blockquote>
-<p>NVlabs官方的一个经验，如果你的模型在20秒左右仍然未收敛，那么经过更长时间之后它也不太可能变得更好。因此，官方建议在训练的早期阶段调整数据以获得更清晰的结果。<br>对于更大的真实场景，多训练的结果只能获得一丁点的清晰度。几乎所有的收敛都发生在最初的几秒钟内。</p>
+<p>NVlabs官方的一个经验，如果你的模型在20秒左右仍然未收敛，那么经过更长时间之后它也不太可能变得更好。因此，官方建议在训练的早期阶段调整数据以获得更清晰的结果。<br>
+对于更大的真实场景，多训练的结果只能获得一丁点的清晰度。几乎所有的收敛都发生在最初的几秒钟内。</p>
 </blockquote>
-<h3 id="其他注意事项"><a href="#其他注意事项" class="headerlink" title="其他注意事项"></a>其他注意事项</h3><ul>
+<h3 id="其他注意事项">其他注意事项</h3>
+<ul>
 <li>数据集常见的问题是相机位置的比例或偏移不正确。</li>
 <li>如果图像太少，或者相机位置数据不正确（例如COLMAP未能生成位置结果）。在这种情况下，一般需要更多的图像，或者调整计算相机位置的过程。这超除了instant-ngp项目本身实现的范围。</li>
 </ul>
-<h2 id="数据集准备"><a href="#数据集准备" class="headerlink" title="数据集准备"></a>数据集准备</h2><h3 id="现有数据集"><a href="#现有数据集" class="headerlink" title="现有数据集"></a>现有数据集</h3><p>如果你之前就已经有了NeRF的数据集，那么instant-ngp可以与之兼容。只需要做出一些小小的修改。</p>
+<h2 id="数据集准备">数据集准备</h2>
+<h3 id="现有数据集">现有数据集</h3>
+<p>如果你之前就已经有了NeRF的数据集，那么instant-ngp可以与之兼容。只需要做出一些小小的修改。</p>
 <p>关于这一点，请参考：<a target="_blank" rel="noopener" href="https://github.com/NVlabs/instant-ngp/blob/master/docs/nerf_dataset_tips.md#existing-datasets">Existing Datasets</a></p>
-<h3 id="准备新的NeRF数据集"><a href="#准备新的NeRF数据集" class="headerlink" title="准备新的NeRF数据集"></a>准备新的NeRF数据集</h3><p>要训练自己的数据集，必须将数据处理成instant-ngp支持的格式。NVlabs提供了三种方式：</p>
+<h3 id="准备新的NeRF数据集">准备新的NeRF数据集</h3>
+<p>要训练自己的数据集，必须将数据处理成instant-ngp支持的格式。NVlabs提供了三种方式：</p>
 <ul>
 <li>COLMAP：从您拍摄的一组照片或视频创建数据集</li>
 <li>Record3D：使用iPhone 12 Pro或更新版本（基于 ARKit）创建数据集</li>
@@ -337,7 +349,8 @@
 <p>在这里我只介绍不需要iPhone即可使用的COLMAP，如果你需要了解另外两种方式，请参考：<a target="_blank" rel="noopener" href="https://github.com/NVlabs/instant-ngp/blob/master/docs/nerf_dataset_tips.md#Record3D">Record3D</a>和<a target="_blank" rel="noopener" href="https://github.com/NVlabs/instant-ngp/blob/master/docs/nerf_dataset_tips.md#NeRFCapture">NeRFCapture</a>。</p>
 </blockquote>
 <p>这三种方法都要求Python 3.7或更高版本，并加入到了环境变量PATH中。</p>
-<h3 id="使用COLMAP将视频或图片转换为instant-ngp支持的数据集"><a href="#使用COLMAP将视频或图片转换为instant-ngp支持的数据集" class="headerlink" title="使用COLMAP将视频或图片转换为instant-ngp支持的数据集"></a>使用COLMAP将视频或图片转换为instant-ngp支持的数据集</h3><blockquote>
+<h3 id="使用COLMAP将视频或图片转换为instant-ngp支持的数据集">使用COLMAP将视频或图片转换为instant-ngp支持的数据集</h3>
+<blockquote>
 <p>对于Linux系统，需要先行安装COLMAP和FFmpeg。</p>
 </blockquote>
 <blockquote>
@@ -345,7 +358,6 @@
 </blockquote>
 <p>如果输入的文件是视频，可以使用以下包含NVlabs推荐参数的指令来运行<code>scripts/colmap2nerf.py</code>：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data-folder$ python [path-to-instant-ngp]/scripts/colmap2nerf.py --video_in &lt;filename of video&gt; --video_fps 2 --run_colmap --aabb_scale 32</span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>以上假定单个视频文件作为输入，FFmpeg会以指定的帧速率（此处为2）提取帧。</p>
 </blockquote>
@@ -354,10 +366,9 @@
 </blockquote>
 <p>如果输入的文件是图像，要先将他们放到名为<code>images</code>的子文件夹中，然后使用以下包含NVlabs推荐参数的指令来运行<code>scripts/colmap2nerf.py</code>：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data-folder$ python [path-to-instant-ngp]/scripts/colmap2nerf.py --colmap_matcher exhaustive --run_colmap --aabb_scale 32</span><br></pre></td></tr></table></figure>
-
 <p><code>scripts/colmap2nerf.py</code>这个脚本将根据需要运行FFmpeg和COLMAP，并将结果转换为<code>transforms.json</code>的格式，然后写入当前目录。</p>
 <p>默认情况下，该脚本使用 <em>sequential matcher</em> 调用COLMAP，这适用于 <strong>平滑变化</strong> 的相机路径拍摄的图像。</p>
-<p>如果视频&#x2F;图像没有特定排序，则使用 <em>exhaustive matcher</em> 更为合适。</p>
+<p>如果视频/图像没有特定排序，则使用 <em>exhaustive matcher</em> 更为合适。</p>
 <p>对于更多选项，可以使用<code>--help</code>运行脚本。</p>
 <p>有关COLMAP更高的使用，或者具有挑战性的场景，需要参阅<a target="_blank" rel="noopener" href="https://colmap.github.io/cli.html">COLMAP的文档</a>，这可能需要修改<code>scripts/colmap2nerf.py</code>脚本本身。</p>
 <p><code>aabb_scale</code>参数是 <strong>最重要</strong> 的instant-ngp参数。该参数指定场景的范围，默认值为<code>1</code>——寄，场景缩放使得相机位置与原点的平均距离为<code>1</code>个单位。</p>
@@ -367,9 +378,9 @@
 <p><strong>请注意</strong>：这回稍微影响训练速度。对于自然场景，从<code>128</code>的<code>aabb_scale</code>开始，随后逐渐减少它。顺便一提，这个值可以直接在<code>transforms.json</code>输出文件中编辑，无需重新运行<code>scripts/colmap2nerf.py</code>脚本。</p>
 </blockquote>
 <p>您可以选择传入运行<code>Detectron2</code>以自动生成掩码的对象类别（例如<code>--mask_categories person car</code>）。 instant-ngp不会使用屏蔽像素进行训练。此实用程序对希望忽略移动或敏感物体（例如人、汽车或自行车）的用户很有帮助。有关类别列表，请参阅<code>scripts/category2id.json</code>。</p>
-<h2 id="NeRF"><a href="#NeRF" class="headerlink" title="NeRF"></a>NeRF</h2><p>在instant-ngp的目录下运行：</p>
+<h2 id="NeRF">NeRF</h2>
+<p>在instant-ngp的目录下运行：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">instant-ngp$ ./instant-ngp [path to training data folder containing transforms.json]</span><br></pre></td></tr></table></figure>
-
 
     </div>
 

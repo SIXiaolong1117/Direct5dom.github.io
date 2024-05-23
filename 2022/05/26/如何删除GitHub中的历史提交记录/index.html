@@ -261,31 +261,35 @@
       
         <p>删除<code>.git</code>文件夹可能会导致git存储库中的问题。如果要删除所有提交历史记录，但将代码保持在当前状态，可以按照本文方式安全地执行此操作。</p>
 <span id="more"></span>
-
 <ol>
-<li><p>在仓库目录运行：</p>
+<li>
+<p>在仓库目录运行：</p>
  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout --orphan latest_branch</span><br></pre></td></tr></table></figure>
-
-<p> 这相当于创建了一个新的分支。</p>
+<p>这相当于创建了一个新的分支。</p>
 </li>
-<li><p>添加所有文件：</p>
+<li>
+<p>添加所有文件：</p>
  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add -A</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>提交更改：</p>
+<li>
+<p>提交更改：</p>
  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -am &quot;commit message&quot;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>删除原分支：</p>
+<li>
+<p>删除原分支：</p>
  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -D main</span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>这里假设要删除的原分支为<code>main</code>，具体情况需根据自己的需求来决定。</p>
 </blockquote>
 </li>
-<li><p>将当前分支重命名：</p>
+<li>
+<p>将当前分支重命名：</p>
  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -m main</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>最后，强制更新存储库：</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -f origin main</span><br></pre></td></tr></table></figure></li>
+<li>
+<p>最后，强制更新存储库：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -f origin main</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
 
     </div>
