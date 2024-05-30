@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.1.1">
+  <!--pjax：防止跳转页面音乐暂停-->
+  <script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.js"></script>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="Jf8iwJYC6yZlPKb6WSahXynQpbKUIwCQUMv85MpwqAM">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.sixiaolong.win","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="此前我一直在使用的远控方法是简单的将服务通过路由器的端口转发功能转发转发到内网指定 IP 端口。配合 DDNS，这种方法无疑是最简单的，但是它存在很严重的安全性问题。所有不同协议的不同服务，均以裸奔的形式跑在公网，这是很恐怖的一件事，尤其是在经历了几次爆破之后。  很多人经常说自己的隐私不值钱，不会有黑客来入侵。这是一个典型的错误认知，现如今绝大多数黑客攻击都不是为了窃取数据，他们要的是大量的肉鸡">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在 OpenWRT 上使用 WireGuard 异地组网">
+<meta property="og:url" content="https://blog.sixiaolong.win/2024/05/23/%E5%9C%A8OpenWRT%E4%B8%8A%E4%BD%BF%E7%94%A8WireGuard%E5%BC%82%E5%9C%B0%E7%BB%84%E7%BD%91/index.html">
+<meta property="og:site_name" content="司晓龙的博客">
+<meta property="og:description" content="此前我一直在使用的远控方法是简单的将服务通过路由器的端口转发功能转发转发到内网指定 IP 端口。配合 DDNS，这种方法无疑是最简单的，但是它存在很严重的安全性问题。所有不同协议的不同服务，均以裸奔的形式跑在公网，这是很恐怖的一件事，尤其是在经历了几次爆破之后。  很多人经常说自己的隐私不值钱，不会有黑客来入侵。这是一个典型的错误认知，现如今绝大多数黑客攻击都不是为了窃取数据，他们要的是大量的肉鸡">
+<meta property="og:locale">
+<meta property="article:published_time" content="2024-05-23T10:27:35.000Z">
+<meta property="article:modified_time" content="2024-05-29T10:44:32.683Z">
+<meta property="article:author" content="司晓龙">
+<meta property="article:tag" content="OpenWRT">
+<meta property="article:tag" content="计算机网络">
+<meta property="article:tag" content="软路由">
+<meta property="article:tag" content="WireGuard">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://blog.sixiaolong.win/2024/05/23/%E5%9C%A8OpenWRT%E4%B8%8A%E4%BD%BF%E7%94%A8WireGuard%E5%BC%82%E5%9C%B0%E7%BB%84%E7%BD%91/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+
+  <title>在 OpenWRT 上使用 WireGuard 异地组网 | 司晓龙的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">司晓龙的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">相逢在宇宙 0080</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+
+  <script type="text/javascript" src="/Welcome/Welcome.js"></script>
+
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="https://about.sixiaolong.win/" rel="noopener" target="_blank"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://blog.sixiaolong.win/2024/05/23/%E5%9C%A8OpenWRT%E4%B8%8A%E4%BD%BF%E7%94%A8WireGuard%E5%BC%82%E5%9C%B0%E7%BB%84%E7%BD%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="司晓龙">
+      <meta itemprop="description" content="司晓龙的个人技术博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="司晓龙的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          在 OpenWRT 上使用 WireGuard 异地组网
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2024-05-23 18:27:35" itemprop="dateCreated datePublished" datetime="2024-05-23T18:27:35+08:00">2024-05-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2024-05-29 18:44:32" itemprop="dateModified" datetime="2024-05-29T18:44:32+08:00">2024-05-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>此前我一直在使用的远控方法是简单的将服务通过路由器的端口转发功能转发转发到内网指定 IP 端口。配合 DDNS，这种方法无疑是最简单的，但是它存在很严重的安全性问题。所有不同协议的不同服务，均以裸奔的形式跑在公网，这是很恐怖的一件事，尤其是在经历了几次爆破之后。</p>
+<blockquote>
+<p>很多人经常说自己的隐私不值钱，不会有黑客来入侵。这是一个典型的错误认知，现如今绝大多数黑客攻击都不是为了窃取数据，他们要的是大量的肉鸡，用于挖矿或者 DDOS 攻击。不要觉得这是危言耸听，一些挖矿脚本甚至植入了浏览器脚本中，你打开某个网页的时候可能就已经在帮人挖矿了。</p>
+</blockquote>
+<p>在之前我已经对基于 HTTP 的服务进行了一次改造，使用 Ngnix，将内网所有基于 HTTP 的服务统一通过群晖 NAS 进行反代，并添加 Let’s Encrypt 的 SSL 证书实现 HTTPS 加密，再取消相关服务的端口转发。</p>
+<p>但是这种方案只能用在基于 HTTP 协议的服务上，对于 SSH、RDP 等其他协议的服务则无能为力。这些服务大多有一个相同的特点，就是基本只有自己会用到，所以特别适合使用 VPN 方式构建加密隧道来访问，而 WireGuard 就是一个很好的选择。</p>
+<span id="more"></span>
+
+<h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><ol>
+<li>使用 WireGuard，让远程设备可以直接访问家庭内网网段（<code>192.168.0.0/24</code>）。</li>
+<li>仅访问家庭内网网段（<code>192.168.0.0/24</code>）时才经过WireGuard隧道，其他连接不要经过隧道。</li>
+</ol>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><ul>
+<li>在 OpenWRT 中安装 WireGuard 相关软件包；</li>
+<li>拥有公网 IPv4 或全球单播的 IPv6。</li>
+</ul>
+<h2 id="「服务端」设置"><a href="#「服务端」设置" class="headerlink" title="「服务端」设置"></a>「服务端」设置</h2><p>WireGuard 并不严格区分「服务端」和「客户端」，WireGuard 采用的是对等（peer-to-peer）的架构，每个参与者都是一个对等方（Peer）。</p>
+<p>所以你会发现 WireGuard 的「客户端」和「服务端」配置内容差别不大，不要因此感到意外。但在实际的网络通信中因为通信方向的不同，还是要区分出形式上的「服务端」和「客户端」。</p>
+<p>此处的「服务端」指代OpenWRT一端的 Peer，「客户端」指代 Windows、Linux、Android 等终端设备的 Peer。</p>
+<h3 id="添加-WireGuard-VPN-接口"><a href="#添加-WireGuard-VPN-接口" class="headerlink" title="添加 WireGuard VPN 接口"></a>添加 WireGuard VPN 接口</h3><p>OpenWRT 上的 WireGuard 有一个好处，就是「服务端」的大多数配置都可以在图形界面完成，而无需直面 <code>.config</code> 文件。以下是OpenWRT上「服务端」的配置指南。</p>
+<ol>
+<li>在 <code>LuCI</code> -&gt; <code>网络</code> -&gt; <code>接口</code>中点击<code>添加接口</code>。名称自拟，协议选择 <code>WireGuard VPN</code>，点击<code>创建接口</code>。</li>
+<li>在新接口的编辑页面中<ol>
+<li>点击<code>常规设置</code><ol>
+<li>点击<code>生成新的密钥对</code>，生成一对新的密钥。</li>
+<li>IP地址要选择一个和OpenWRT所在网段（即家庭内网网段：<code>192.168.0.0/24</code>）不同网段的IP，例如：<code>192.168.10.1/24</code>。</li>
+</ol>
+</li>
+<li>点击<code>防火墙设置</code>，选择<code>lan</code>区域。</li>
+<li>保存。</li>
+</ol>
+</li>
+<li>保存并应用。</li>
+</ol>
+<h3 id="设置防火墙规则"><a href="#设置防火墙规则" class="headerlink" title="设置防火墙规则"></a>设置防火墙规则</h3><p>如果我们只完成 WireGuard VPN 接口的添加就连接到 WireGuard 隧道，你会发现虽然你可以通过隧道访问 OpenWRT，但是家庭内网网段（<code>192.168.0.0/24</code>）下的其他设备仍然无法访问。</p>
+<p>这是因为我们缺乏转发规则，家庭内网网段（<code>192.168.0.0/24</code>）下其他设备的的数据包无法正确路由，解决办法是添加一行 NAT 规则。</p>
+<ol>
+<li>在 <code>LuCI</code> -&gt; <code>网络</code> -&gt; <code>防火墙</code>中点击<code>自定义规则</code>。</li>
+<li>在最后添加一行： <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -t nat -A POSTROUTING -s 192.168.10.0/24 -o br-lan -j MASQUERADE</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>解释：对于源地址在 <code>192.168.10.0/24</code> 子网内的所有数据包，在它们通过 <code>br-lan</code> 接口离开网络时，进行地址伪装（<code>MASQUERADE</code>），即将它们的源地址更改为路由器的出口地址。这样做的目的是使这些数据包看起来像是来自路由器本身，而不是内部网络，使得外部网络中的响应能够正确返回到内网。</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="「客户端」设置"><a href="#「客户端」设置" class="headerlink" title="「客户端」设置"></a>「客户端」设置</h2><p>使用 OpenWRT 的 WireGuard 的另一个好处是，「客户端」的大多数配置都可以在图形界面下生成，我们没必要从零开始撰写 <code>.config</code> 文件。</p>
+<h3 id="获取对端配置"><a href="#获取对端配置" class="headerlink" title="获取对端配置"></a>获取对端配置</h3><ol>
+<li>在 <code>LuCI</code> -&gt; <code>网络</code> -&gt; <code>接口</code>中点击刚才创建的 WireGuard VPN 接口的<code>编辑</code>。</li>
+<li>选择<code>对端</code> -&gt; <code>添加对端</code>。</li>
+<li>在编辑对端的页面中<ol>
+<li>点击<code>生成新的密钥对</code>，生成一对新的密钥。</li>
+<li>（可选）点击<code>生成预共享密钥对</code>，生成一个新的预共享密钥。</li>
+<li>在<code>允许的 IP</code>中添加一个在刚才设置网段内的 IP 地址，例如：<code>192.168.10.2</code> </li>
+<li>点击生成配置。</li>
+</ol>
+</li>
+<li>在生成配置的页面中<ol>
+<li>修改链接端点，此处默认是你网卡的 IPv4 或 IPv6 地址，你应该将其更改为公网可访问的 IP 地址或 DDNS 域名。</li>
+<li>修改<code>允许的 IP</code>，修改为OpenWRT所在网段（<code>192.168.0.0/24</code>）。</li>
+<li>可以复制最下面生成的配置内容，或扫描页面左侧的二维码。配置内容参考： <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[Interface]</span><br><span class="line">PrivateKey = abcabc</span><br><span class="line">Address = 192.168.10.2</span><br><span class="line"># ListenPort not defined</span><br><span class="line">DNS = 192.168.0.1</span><br><span class="line"></span><br><span class="line">[Peer]</span><br><span class="line">PublicKey = abcabc</span><br><span class="line">PresharedKey = abcabc</span><br><span class="line">AllowedIPs = 192.168.0.0/24</span><br><span class="line">Endpoint = ddns.com:59943</span><br><span class="line"># PersistentKeepAlive not defined</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>关于「客户端」配置的进一步解释说明和注意事项：</p>
+<ul>
+<li>这当中的各种 Key 都是自动生成的，跟着教程来不会在这上面出错；</li>
+<li><code>[Interface]</code> 的 <code>Address</code> 是 WireGuard 虚拟网络下的 IP 地址，在「添加 WireGuard VPN 接口」中有设置。</li>
+<li><code>[Peer]</code> 的 <code>AllowedIPs</code> 是分流的关键，此处默认是 <code>0.0.0.0/0</code> 和 <code>::/0</code>，代表所有的 IPv4 和 IPv6 地址。对于我们的需求来说，只需要家庭内网网段（<code>192.168.0.0/24</code>）通过隧道即可，所以此处应修改为对应的 <code>192.168.0.0/24</code>，如果有其他需求，也可继续添加其他地址。</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="疑难解答"><a href="#疑难解答" class="headerlink" title="疑难解答"></a>疑难解答</h2><h3 id="创建对端后无法连接"><a href="#创建对端后无法连接" class="headerlink" title="创建对端后无法连接"></a>创建对端后无法连接</h3><p>一些奇奇怪怪的 Bug，可能需要重启 WireGuard 相关服务。个人建议直接 <code>reboot</code> OpenWRT。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/OpenWRT/" rel="tag"># OpenWRT</a>
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag"># 计算机网络</a>
+              <a href="/tags/%E8%BD%AF%E8%B7%AF%E7%94%B1/" rel="tag"># 软路由</a>
+              <a href="/tags/WireGuard/" rel="tag"># WireGuard</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/02/19/%E5%B1%80%E5%9F%9F%E7%BD%91%E9%80%9A%E8%BF%87DDNS%E5%9F%9F%E5%90%8D-%E7%AB%AF%E5%8F%A3%E8%AE%BF%E9%97%AE%E8%87%AA%E5%BB%BA%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" rel="prev" title="局域网通过DDNS域名+端口访问自建服务的解决方案">
+      <i class="fa fa-chevron-left"></i> 局域网通过DDNS域名+端口访问自建服务的解决方案
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/05/29/%E4%BD%BF%E7%94%A8wg-easy%E6%9B%B4%E7%AE%80%E5%8D%95%E7%9A%84%E5%9C%A8%E7%BE%A4%E6%99%96%EF%BC%88Linux%EF%BC%89%E4%B8%8A%E6%90%AD%E5%BB%BAWireGuard/" rel="next" title="使用wg-easy更简单的在群晖（Linux）上搭建WireGuard">
+      使用wg-easy更简单的在群晖（Linux）上搭建WireGuard <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9C%80%E6%B1%82"><span class="nav-number">1.</span> <span class="nav-text">需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%86%E5%A4%87"><span class="nav-number">2.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E3%80%8C%E6%9C%8D%E5%8A%A1%E7%AB%AF%E3%80%8D%E8%AE%BE%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">「服务端」设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0-WireGuard-VPN-%E6%8E%A5%E5%8F%A3"><span class="nav-number">3.1.</span> <span class="nav-text">添加 WireGuard VPN 接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E9%98%B2%E7%81%AB%E5%A2%99%E8%A7%84%E5%88%99"><span class="nav-number">3.2.</span> <span class="nav-text">设置防火墙规则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E3%80%8C%E5%AE%A2%E6%88%B7%E7%AB%AF%E3%80%8D%E8%AE%BE%E7%BD%AE"><span class="nav-number">4.</span> <span class="nav-text">「客户端」设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E5%AF%B9%E7%AB%AF%E9%85%8D%E7%BD%AE"><span class="nav-number">4.1.</span> <span class="nav-text">获取对端配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%96%91%E9%9A%BE%E8%A7%A3%E7%AD%94"><span class="nav-number">5.</span> <span class="nav-text">疑难解答</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%AF%B9%E7%AB%AF%E5%90%8E%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5"><span class="nav-number">5.1.</span> <span class="nav-text">创建对端后无法连接</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="司晓龙"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">司晓龙</p>
+  <div class="site-description" itemprop="description">司晓龙的个人技术博客</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Direct5dom" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Direct5dom" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/SI_Xiaolong" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;SI_Xiaolong" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+      </div>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">司晓龙</span>
+</div>
+  <div class="powered-by">
+    <!--Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> -->Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT</a> & <a href="https://direct5dom.github.io/" class="theme-link" rel="noopener" target="_blank">司晓龍</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

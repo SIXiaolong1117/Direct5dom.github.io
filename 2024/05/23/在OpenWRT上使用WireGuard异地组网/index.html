@@ -25,15 +25,15 @@
     var CONFIG = {"hostname":"blog.sixiaolong.win","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="前言 此前我一直在使用的远控方法是简单的将服务通过路由器的端口转发功能转发转发到内网指定 IP 端口。配合 DDNS，这种方法无疑是最简单的，但是它存在很严重的安全性问题。所有不同协议的不同服务，均以裸奔的形式跑在公网，这是很恐怖的一件事，尤其是在经历了几次爆破之后。  很多人经常说自己的隐私不值钱，不会有黑客来入侵。这是一个典型的错误认知，现如今绝大多数黑客攻击都不是为了窃取数据，他们要的是大量">
+  <meta name="description" content="前言此前我一直在使用的远控方法是简单的将服务通过路由器的端口转发功能转发转发到内网指定 IP 端口。配合 DDNS，这种方法无疑是最简单的，但是它存在很严重的安全性问题。所有不同协议的不同服务，均以裸奔的形式跑在公网，这是很恐怖的一件事，尤其是在经历了几次爆破之后。  很多人经常说自己的隐私不值钱，不会有黑客来入侵。这是一个典型的错误认知，现如今绝大多数黑客攻击都不是为了窃取数据，他们要的是大量的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在 OpenWRT 上使用 WireGuard 异地组网">
 <meta property="og:url" content="https://blog.sixiaolong.win/2024/05/23/%E5%9C%A8OpenWRT%E4%B8%8A%E4%BD%BF%E7%94%A8WireGuard%E5%BC%82%E5%9C%B0%E7%BB%84%E7%BD%91/index.html">
 <meta property="og:site_name" content="司晓龙的博客">
-<meta property="og:description" content="前言 此前我一直在使用的远控方法是简单的将服务通过路由器的端口转发功能转发转发到内网指定 IP 端口。配合 DDNS，这种方法无疑是最简单的，但是它存在很严重的安全性问题。所有不同协议的不同服务，均以裸奔的形式跑在公网，这是很恐怖的一件事，尤其是在经历了几次爆破之后。  很多人经常说自己的隐私不值钱，不会有黑客来入侵。这是一个典型的错误认知，现如今绝大多数黑客攻击都不是为了窃取数据，他们要的是大量">
+<meta property="og:description" content="前言此前我一直在使用的远控方法是简单的将服务通过路由器的端口转发功能转发转发到内网指定 IP 端口。配合 DDNS，这种方法无疑是最简单的，但是它存在很严重的安全性问题。所有不同协议的不同服务，均以裸奔的形式跑在公网，这是很恐怖的一件事，尤其是在经历了几次爆破之后。  很多人经常说自己的隐私不值钱，不会有黑客来入侵。这是一个典型的错误认知，现如今绝大多数黑客攻击都不是为了窃取数据，他们要的是大量的">
 <meta property="og:locale">
 <meta property="article:published_time" content="2024-05-23T10:27:35.000Z">
-<meta property="article:modified_time" content="2024-05-23T10:27:35.559Z">
+<meta property="article:modified_time" content="2024-05-23T10:27:35.000Z">
 <meta property="article:author" content="司晓龙">
 <meta property="article:tag" content="OpenWRT">
 <meta property="article:tag" content="计算机网络">
@@ -254,36 +254,30 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="前言">前言</h2>
-<p>此前我一直在使用的远控方法是简单的将服务通过路由器的端口转发功能转发转发到内网指定 IP 端口。配合 DDNS，这种方法无疑是最简单的，但是它存在很严重的安全性问题。所有不同协议的不同服务，均以裸奔的形式跑在公网，这是很恐怖的一件事，尤其是在经历了几次爆破之后。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>此前我一直在使用的远控方法是简单的将服务通过路由器的端口转发功能转发转发到内网指定 IP 端口。配合 DDNS，这种方法无疑是最简单的，但是它存在很严重的安全性问题。所有不同协议的不同服务，均以裸奔的形式跑在公网，这是很恐怖的一件事，尤其是在经历了几次爆破之后。</p>
 <blockquote>
 <p>很多人经常说自己的隐私不值钱，不会有黑客来入侵。这是一个典型的错误认知，现如今绝大多数黑客攻击都不是为了窃取数据，他们要的是大量的肉鸡，用于挖矿或者 DDOS 攻击。不要觉得这是危言耸听，一些挖矿脚本甚至植入了浏览器脚本中，你打开某个网页的时候可能就已经在帮人挖矿了。</p>
 </blockquote>
 <p>在之前我已经对基于 HTTP 的服务进行了一次改造，使用 Ngnix，将内网所有基于 HTTP 的服务统一通过群晖 NAS 进行反代，并添加 Let’s Encrypt 的 SSL 证书实现 HTTPS 加密，再取消相关服务的端口转发。</p>
 <p>但是这种方案只能用在基于 HTTP 协议的服务上，对于 SSH、RDP 等其他协议的服务则无能为力。这些服务大多有一个相同的特点，就是基本只有自己会用到，所以特别适合使用 VPN 方式构建加密隧道来访问，而 WireGuard 就是一个很好的选择。</p>
 <span id="more"></span>
-<h2 id="需求">需求</h2>
-<ol>
+
+<h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><ol>
 <li>使用 WireGuard，让远程设备可以直接访问家庭内网网段（<code>192.168.0.0/24</code>）。</li>
 <li>仅访问家庭内网网段（<code>192.168.0.0/24</code>）时才经过WireGuard隧道，其他连接不要经过隧道。</li>
 </ol>
-<h2 id="准备">准备</h2>
-<ul>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><ul>
 <li>在 OpenWRT 中安装 WireGuard 相关软件包；</li>
 <li>拥有公网 IPv4 或全球单播的 IPv6。</li>
 </ul>
-<h2 id="「服务端」设置">「服务端」设置</h2>
-<p>WireGuard 并不严格区分「服务端」和「客户端」，WireGuard 采用的是对等（peer-to-peer）的架构，每个参与者都是一个对等方（Peer）。</p>
+<h2 id="「服务端」设置"><a href="#「服务端」设置" class="headerlink" title="「服务端」设置"></a>「服务端」设置</h2><p>WireGuard 并不严格区分「服务端」和「客户端」，WireGuard 采用的是对等（peer-to-peer）的架构，每个参与者都是一个对等方（Peer）。</p>
 <p>所以你会发现 WireGuard 的「客户端」和「服务端」配置内容差别不大，不要因此感到意外。但在实际的网络通信中因为通信方向的不同，还是要区分出形式上的「服务端」和「客户端」。</p>
 <p>此处的「服务端」指代OpenWRT一端的 Peer，「客户端」指代 Windows、Linux、Android 等终端设备的 Peer。</p>
-<h3 id="添加-WireGuard-VPN-接口">添加 WireGuard VPN 接口</h3>
-<p>OpenWRT 上的 WireGuard 有一个好处，就是「服务端」的大多数配置都可以在图形界面完成，而无需直面 <code>.config</code> 文件。以下是OpenWRT上「服务端」的配置指南。</p>
+<h3 id="添加-WireGuard-VPN-接口"><a href="#添加-WireGuard-VPN-接口" class="headerlink" title="添加 WireGuard VPN 接口"></a>添加 WireGuard VPN 接口</h3><p>OpenWRT 上的 WireGuard 有一个好处，就是「服务端」的大多数配置都可以在图形界面完成，而无需直面 <code>.config</code> 文件。以下是OpenWRT上「服务端」的配置指南。</p>
 <ol>
 <li>在 <code>LuCI</code> -&gt; <code>网络</code> -&gt; <code>接口</code>中点击<code>添加接口</code>。名称自拟，协议选择 <code>WireGuard VPN</code>，点击<code>创建接口</code>。</li>
-<li>在新接口的编辑页面中
-<ol>
-<li>点击<code>常规设置</code>
-<ol>
+<li>在新接口的编辑页面中<ol>
+<li>点击<code>常规设置</code><ol>
 <li>点击<code>生成新的密钥对</code>，生成一对新的密钥。</li>
 <li>IP地址要选择一个和OpenWRT所在网段（即家庭内网网段：<code>192.168.0.0/24</code>）不同网段的IP，例如：<code>192.168.10.1/24</code>。</li>
 </ol>
@@ -294,8 +288,7 @@
 </li>
 <li>保存并应用。</li>
 </ol>
-<h3 id="设置防火墙规则">设置防火墙规则</h3>
-<p>如果我们只完成 WireGuard VPN 接口的添加就连接到 WireGuard 隧道，你会发现虽然你可以通过隧道访问 OpenWRT，但是家庭内网网段（<code>192.168.0.0/24</code>）下的其他设备仍然无法访问。</p>
+<h3 id="设置防火墙规则"><a href="#设置防火墙规则" class="headerlink" title="设置防火墙规则"></a>设置防火墙规则</h3><p>如果我们只完成 WireGuard VPN 接口的添加就连接到 WireGuard 隧道，你会发现虽然你可以通过隧道访问 OpenWRT，但是家庭内网网段（<code>192.168.0.0/24</code>）下的其他设备仍然无法访问。</p>
 <p>这是因为我们缺乏转发规则，家庭内网网段（<code>192.168.0.0/24</code>）下其他设备的的数据包无法正确路由，解决办法是添加一行 NAT 规则。</p>
 <ol>
 <li>在 <code>LuCI</code> -&gt; <code>网络</code> -&gt; <code>防火墙</code>中点击<code>自定义规则</code>。</li>
@@ -305,27 +298,21 @@
 </blockquote>
 </li>
 </ol>
-<h2 id="「客户端」设置">「客户端」设置</h2>
-<p>使用 OpenWRT 的 WireGuard 的另一个好处是，「客户端」的大多数配置都可以在图形界面下生成，我们没必要从零开始撰写 <code>.config</code> 文件。</p>
-<h3 id="获取对端配置">获取对端配置</h3>
-<ol>
+<h2 id="「客户端」设置"><a href="#「客户端」设置" class="headerlink" title="「客户端」设置"></a>「客户端」设置</h2><p>使用 OpenWRT 的 WireGuard 的另一个好处是，「客户端」的大多数配置都可以在图形界面下生成，我们没必要从零开始撰写 <code>.config</code> 文件。</p>
+<h3 id="获取对端配置"><a href="#获取对端配置" class="headerlink" title="获取对端配置"></a>获取对端配置</h3><ol>
 <li>在 <code>LuCI</code> -&gt; <code>网络</code> -&gt; <code>接口</code>中点击刚才创建的 WireGuard VPN 接口的<code>编辑</code>。</li>
 <li>选择<code>对端</code> -&gt; <code>添加对端</code>。</li>
-<li>在编辑对端的页面中
-<ol>
+<li>在编辑对端的页面中<ol>
 <li>点击<code>生成新的密钥对</code>，生成一对新的密钥。</li>
 <li>（可选）点击<code>生成预共享密钥对</code>，生成一个新的预共享密钥。</li>
-<li>在<code>允许的 IP</code>中添加一个在刚才设置网段内的 IP 地址，例如：<code>192.168.10.2</code></li>
+<li>在<code>允许的 IP</code>中添加一个在刚才设置网段内的 IP 地址，例如：<code>192.168.10.2</code> </li>
 <li>点击生成配置。</li>
 </ol>
 </li>
-<li>在生成配置的页面中
-<ol>
+<li>在生成配置的页面中<ol>
 <li>修改链接端点，此处默认是你网卡的 IPv4 或 IPv6 地址，你应该将其更改为公网可访问的 IP 地址或 DDNS 域名。</li>
 <li>修改<code>允许的 IP</code>，修改为OpenWRT所在网段（<code>192.168.0.0/24</code>）。</li>
-<li>可以复制最下面生成的配置内容，或扫描页面左侧的二维码。配置内容参考：</li>
-</ol>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[Interface]</span><br><span class="line">PrivateKey = 2N3CN6H/lXka5OZqM2BTlyLUAGFzlnviMDsWHBj1O2w=</span><br><span class="line">Address = 192.168.5.2</span><br><span class="line"># ListenPort not defined</span><br><span class="line">DNS = 192.168.0.25</span><br><span class="line"></span><br><span class="line">[Peer]</span><br><span class="line">PublicKey = OG6PpNT2zvXcreP0T53C7txUnrRpCbInRLgKSBJXEzM=</span><br><span class="line">PresharedKey = 0/tj4JuWXgDm2rNt1SE2IHc55J/FjU2iSRvZdz5i/+0=</span><br><span class="line">AllowedIPs = 192.168.0.0/24</span><br><span class="line">Endpoint = ddns.com:59943</span><br><span class="line"># PersistentKeepAlive not defined</span><br></pre></td></tr></table></figure>
+<li>可以复制最下面生成的配置内容，或扫描页面左侧的二维码。配置内容参考： <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[Interface]</span><br><span class="line">PrivateKey = 2N3CN6H/lXka5OZqM2BTlyLUAGFzlnviMDsWHBj1O2w=</span><br><span class="line">Address = 192.168.5.2</span><br><span class="line"># ListenPort not defined</span><br><span class="line">DNS = 192.168.0.25</span><br><span class="line"></span><br><span class="line">[Peer]</span><br><span class="line">PublicKey = OG6PpNT2zvXcreP0T53C7txUnrRpCbInRLgKSBJXEzM=</span><br><span class="line">PresharedKey = 0/tj4JuWXgDm2rNt1SE2IHc55J/FjU2iSRvZdz5i/+0=</span><br><span class="line">AllowedIPs = 192.168.0.0/24</span><br><span class="line">Endpoint = ddns.com:59943</span><br><span class="line"># PersistentKeepAlive not defined</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>关于「客户端」配置的进一步解释说明和注意事项：</p>
 <ul>
@@ -336,9 +323,9 @@
 </blockquote>
 </li>
 </ol>
-<h2 id="疑难解答">疑难解答</h2>
-<h3 id="创建对端后无法连接">创建对端后无法连接</h3>
-<p>一些奇奇怪怪的 Bug，可能需要重启 WireGuard 相关服务。个人建议直接 <code>reboot</code> OpenWRT。</p>
+</li>
+</ol>
+<h2 id="疑难解答"><a href="#疑难解答" class="headerlink" title="疑难解答"></a>疑难解答</h2><h3 id="创建对端后无法连接"><a href="#创建对端后无法连接" class="headerlink" title="创建对端后无法连接"></a>创建对端后无法连接</h3><p>一些奇奇怪怪的 Bug，可能需要重启 WireGuard 相关服务。个人建议直接 <code>reboot</code> OpenWRT。</p>
 
     </div>
 
@@ -363,7 +350,10 @@
     <a href="/2024/02/19/%E5%B1%80%E5%9F%9F%E7%BD%91%E9%80%9A%E8%BF%87DDNS%E5%9F%9F%E5%90%8D-%E7%AB%AF%E5%8F%A3%E8%AE%BF%E9%97%AE%E8%87%AA%E5%BB%BA%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" rel="prev" title="局域网通过DDNS域名+端口访问自建服务的解决方案">
       <i class="fa fa-chevron-left"></i> 局域网通过DDNS域名+端口访问自建服务的解决方案
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2024/05/30/%E4%BD%BF%E7%94%A8wg-easy%E6%9B%B4%E7%AE%80%E5%8D%95%E7%9A%84%E5%9C%A8%E7%BE%A4%E6%99%96%EF%BC%88Linux%EF%BC%89%E4%B8%8A%E6%90%AD%E5%BB%BAWireGuard/" rel="next" title="使用wg-easy更简单的在群晖（Linux）上搭建WireGuard">
+      使用wg-easy更简单的在群晖（Linux）上搭建WireGuard <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -438,7 +428,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

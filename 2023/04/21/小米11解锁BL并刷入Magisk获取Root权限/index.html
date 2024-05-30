@@ -261,30 +261,27 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><img src="https://github.com/topjohnwu/Magisk/raw/master/docs/images/logo.png" alt=""></p>
+        <p><img src="https://github.com/topjohnwu/Magisk/raw/master/docs/images/logo.png"></p>
 <blockquote>
 <p>Root!</p>
 </blockquote>
 <span id="more"></span>
-<h2 id="解锁BL-BootLoader">解锁BL (BootLoader)</h2>
-<p>目前小米官方依旧提供官方解锁BL的途径，可参考小米社区的帖子：<a target="_blank" rel="noopener" href="https://web.vip.miui.com/page/info/mio/mio/detail?postId=2093790">小米手机解锁 Bootloader 教程以及常见问题</a></p>
-<h2 id="刷入Magisk以获取Root权限">刷入Magisk以获取Root权限</h2>
-<p>Magisk，俗称面具，是一个Root权限管理工具，刷入Magisk即可开启Root权限。</p>
-<h3 id="提取boot-img">提取<code>boot.img</code></h3>
-<p><code>boot.img</code>的获取方法有很多，这里推荐在<a target="_blank" rel="noopener" href="https://xiaomirom.com/">小米ROM</a>直接下载对应型号的手机刷机包，解压后就能在其中找到<code>boot.img</code>。</p>
-<h3 id="用Magisk修补boot-img">用Magisk修补<code>boot.img</code></h3>
-<p>提取到<code>boot.img</code>后，需要将其传到手机上，并用Magisk修补<code>boot.img</code>。</p>
+
+<h2 id="解锁BL-BootLoader"><a href="#解锁BL-BootLoader" class="headerlink" title="解锁BL (BootLoader)"></a>解锁BL (BootLoader)</h2><p>目前小米官方依旧提供官方解锁BL的途径，可参考小米社区的帖子：<a target="_blank" rel="noopener" href="https://web.vip.miui.com/page/info/mio/mio/detail?postId=2093790">小米手机解锁 Bootloader 教程以及常见问题</a></p>
+<h2 id="刷入Magisk以获取Root权限"><a href="#刷入Magisk以获取Root权限" class="headerlink" title="刷入Magisk以获取Root权限"></a>刷入Magisk以获取Root权限</h2><p>Magisk，俗称面具，是一个Root权限管理工具，刷入Magisk即可开启Root权限。</p>
+<h3 id="提取boot-img"><a href="#提取boot-img" class="headerlink" title="提取boot.img"></a>提取<code>boot.img</code></h3><p><code>boot.img</code>的获取方法有很多，这里推荐在<a target="_blank" rel="noopener" href="https://xiaomirom.com/">小米ROM</a>直接下载对应型号的手机刷机包，解压后就能在其中找到<code>boot.img</code>。</p>
+<h3 id="用Magisk修补boot-img"><a href="#用Magisk修补boot-img" class="headerlink" title="用Magisk修补boot.img"></a>用Magisk修补<code>boot.img</code></h3><p>提取到<code>boot.img</code>后，需要将其传到手机上，并用Magisk修补<code>boot.img</code>。</p>
 <blockquote>
 <p>Magisk可以在官方Github的<a target="_blank" rel="noopener" href="https://github.com/topjohnwu/Magisk/releases/latest">Release</a>下载。</p>
 </blockquote>
-<h3 id="获得修补后的img">获得修补后的<code>img</code></h3>
-<p>面具修补成功后，会在手机<code>Download</code>目录生成一个<code>magisk_patched-版本_随机.img</code>，将该文件传输到电脑上。</p>
-<h3 id="刷入修补后的img">刷入修补后的<code>img</code></h3>
-<p>将手机重启到fastboot模式，然后再连接电脑。</p>
+<h3 id="获得修补后的img"><a href="#获得修补后的img" class="headerlink" title="获得修补后的img"></a>获得修补后的<code>img</code></h3><p>面具修补成功后，会在手机<code>Download</code>目录生成一个<code>magisk_patched-版本_随机.img</code>，将该文件传输到电脑上。</p>
+<h3 id="刷入修补后的img"><a href="#刷入修补后的img" class="headerlink" title="刷入修补后的img"></a>刷入修补后的<code>img</code></h3><p>将手机重启到fastboot模式，然后再连接电脑。</p>
 <p>确认电脑安装了<a target="_blank" rel="noopener" href="https://source.android.google.cn/setup/build/adb?hl=zh-cn#download-adb">adb</a>，运行如下命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastboot flash boot &lt;面具文件&gt;</span><br></pre></td></tr></table></figure>
+
 <p>出现以下字样代表成功：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Sending <span class="string">&#x27;boot&#x27;</span> (131072 KB) OKAY [ 3.311s]</span><br><span class="line">Writing <span class="string">&#x27;boot&#x27;</span> OKAY [ 0.441s]</span><br><span class="line">Finished. Total time: 3.794s</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>如果失败，则可以用之前的<code>boot.img</code>将手机还原：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastboot flash boot boot.img</span><br></pre></td></tr></table></figure></blockquote>
@@ -388,7 +385,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.1.1">
+  <!--pjax：防止跳转页面音乐暂停-->
+  <script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.js"></script>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="Jf8iwJYC6yZlPKb6WSahXynQpbKUIwCQUMv85MpwqAM">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.sixiaolong.win","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Root!">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小米11解锁BL并刷入Magisk获取Root权限">
+<meta property="og:url" content="https://blog.sixiaolong.win/2023/04/21/%E5%B0%8F%E7%B1%B311%E8%A7%A3%E9%94%81BL%E5%B9%B6%E5%88%B7%E5%85%A5Magisk%E8%8E%B7%E5%8F%96Root%E6%9D%83%E9%99%90/index.html">
+<meta property="og:site_name" content="司晓龙的博客">
+<meta property="og:description" content="Root!">
+<meta property="og:locale">
+<meta property="og:image" content="https://github.com/topjohnwu/Magisk/raw/master/docs/images/logo.png">
+<meta property="article:published_time" content="2023-04-21T01:21:05.000Z">
+<meta property="article:modified_time" content="2023-05-18T07:51:09.000Z">
+<meta property="article:author" content="司晓龙">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="Root">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/topjohnwu/Magisk/raw/master/docs/images/logo.png">
+
+<link rel="canonical" href="https://blog.sixiaolong.win/2023/04/21/%E5%B0%8F%E7%B1%B311%E8%A7%A3%E9%94%81BL%E5%B9%B6%E5%88%B7%E5%85%A5Magisk%E8%8E%B7%E5%8F%96Root%E6%9D%83%E9%99%90/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+
+  <title>小米11解锁BL并刷入Magisk获取Root权限 | 司晓龙的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">司晓龙的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">相逢在宇宙 0080</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+
+  <script type="text/javascript" src="/Welcome/Welcome.js"></script>
+
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="https://about.sixiaolong.win/" rel="noopener" target="_blank"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://blog.sixiaolong.win/2023/04/21/%E5%B0%8F%E7%B1%B311%E8%A7%A3%E9%94%81BL%E5%B9%B6%E5%88%B7%E5%85%A5Magisk%E8%8E%B7%E5%8F%96Root%E6%9D%83%E9%99%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="司晓龙">
+      <meta itemprop="description" content="司晓龙的个人技术博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="司晓龙的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          小米11解锁BL并刷入Magisk获取Root权限
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-04-21 09:21:05" itemprop="dateCreated datePublished" datetime="2023-04-21T09:21:05+08:00">2023-04-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-05-18 15:51:09" itemprop="dateModified" datetime="2023-05-18T15:51:09+08:00">2023-05-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://github.com/topjohnwu/Magisk/raw/master/docs/images/logo.png"></p>
+<blockquote>
+<p>Root!</p>
+</blockquote>
+<span id="more"></span>
+
+<h2 id="解锁BL-BootLoader"><a href="#解锁BL-BootLoader" class="headerlink" title="解锁BL (BootLoader)"></a>解锁BL (BootLoader)</h2><p>目前小米官方依旧提供官方解锁BL的途径，可参考小米社区的帖子：<a target="_blank" rel="noopener" href="https://web.vip.miui.com/page/info/mio/mio/detail?postId=2093790">小米手机解锁 Bootloader 教程以及常见问题</a></p>
+<h2 id="刷入Magisk以获取Root权限"><a href="#刷入Magisk以获取Root权限" class="headerlink" title="刷入Magisk以获取Root权限"></a>刷入Magisk以获取Root权限</h2><p>Magisk，俗称面具，是一个Root权限管理工具，刷入Magisk即可开启Root权限。</p>
+<h3 id="提取boot-img"><a href="#提取boot-img" class="headerlink" title="提取boot.img"></a>提取<code>boot.img</code></h3><p><code>boot.img</code>的获取方法有很多，这里推荐在<a target="_blank" rel="noopener" href="https://xiaomirom.com/">小米ROM</a>直接下载对应型号的手机刷机包，解压后就能在其中找到<code>boot.img</code>。</p>
+<h3 id="用Magisk修补boot-img"><a href="#用Magisk修补boot-img" class="headerlink" title="用Magisk修补boot.img"></a>用Magisk修补<code>boot.img</code></h3><p>提取到<code>boot.img</code>后，需要将其传到手机上，并用Magisk修补<code>boot.img</code>。</p>
+<blockquote>
+<p>Magisk可以在官方Github的<a target="_blank" rel="noopener" href="https://github.com/topjohnwu/Magisk/releases/latest">Release</a>下载。</p>
+</blockquote>
+<h3 id="获得修补后的img"><a href="#获得修补后的img" class="headerlink" title="获得修补后的img"></a>获得修补后的<code>img</code></h3><p>面具修补成功后，会在手机<code>Download</code>目录生成一个<code>magisk_patched-版本_随机.img</code>，将该文件传输到电脑上。</p>
+<h3 id="刷入修补后的img"><a href="#刷入修补后的img" class="headerlink" title="刷入修补后的img"></a>刷入修补后的<code>img</code></h3><p>将手机重启到fastboot模式，然后再连接电脑。</p>
+<p>确认电脑安装了<a target="_blank" rel="noopener" href="https://source.android.google.cn/setup/build/adb?hl=zh-cn#download-adb">adb</a>，运行如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastboot flash boot &lt;面具文件&gt;</span><br></pre></td></tr></table></figure>
+
+<p>出现以下字样代表成功：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Sending <span class="string">&#x27;boot&#x27;</span> (131072 KB) OKAY [ 3.311s]</span><br><span class="line">Writing <span class="string">&#x27;boot&#x27;</span> OKAY [ 0.441s]</span><br><span class="line">Finished. Total time: 3.794s</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果失败，则可以用之前的<code>boot.img</code>将手机还原：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastboot flash boot boot.img</span><br></pre></td></tr></table></figure></blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Android/" rel="tag"># Android</a>
+              <a href="/tags/Root/" rel="tag"># Root</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/03/11/%E4%BD%BF%E7%94%A8instant-ngp%E7%94%9F%E6%88%90NeRF%E6%A8%A1%E5%9E%8B/" rel="prev" title="使用instant-ngp生成NeRF模型">
+      <i class="fa fa-chevron-left"></i> 使用instant-ngp生成NeRF模型
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/05/13/Clash-for-Magisk%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B%EF%BC%88v3-5-1%EF%BC%89/" rel="next" title="【弃用】Clash for Magisk简明教程（v3.5.1）">
+      【弃用】Clash for Magisk简明教程（v3.5.1） <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%94%81BL-BootLoader"><span class="nav-number">1.</span> <span class="nav-text">解锁BL (BootLoader)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%B7%E5%85%A5Magisk%E4%BB%A5%E8%8E%B7%E5%8F%96Root%E6%9D%83%E9%99%90"><span class="nav-number">2.</span> <span class="nav-text">刷入Magisk以获取Root权限</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%90%E5%8F%96boot-img"><span class="nav-number">2.1.</span> <span class="nav-text">提取boot.img</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8Magisk%E4%BF%AE%E8%A1%A5boot-img"><span class="nav-number">2.2.</span> <span class="nav-text">用Magisk修补boot.img</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%BE%97%E4%BF%AE%E8%A1%A5%E5%90%8E%E7%9A%84img"><span class="nav-number">2.3.</span> <span class="nav-text">获得修补后的img</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%B7%E5%85%A5%E4%BF%AE%E8%A1%A5%E5%90%8E%E7%9A%84img"><span class="nav-number">2.4.</span> <span class="nav-text">刷入修补后的img</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="司晓龙"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">司晓龙</p>
+  <div class="site-description" itemprop="description">司晓龙的个人技术博客</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Direct5dom" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Direct5dom" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/SI_Xiaolong" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;SI_Xiaolong" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+      </div>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">司晓龙</span>
+</div>
+  <div class="powered-by">
+    <!--Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> -->Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT</a> & <a href="https://direct5dom.github.io/" class="theme-link" rel="noopener" target="_blank">司晓龍</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
