@@ -1,8 +1,4 @@
 User-agent: *
 Allow: /
-Allow: /archives/
-Allow: /categories/
-Allow: /tags/
-Allow: /about/
 
 Sitemap: https://blog.sixiaolong.win/sitemap.xml
