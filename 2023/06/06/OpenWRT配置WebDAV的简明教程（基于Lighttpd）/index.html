@@ -34,7 +34,7 @@
 <meta property="og:locale">
 <meta property="og:image" content="https://lembergsolutions.com/sites/default/files/styles/original_size_compressed/public/media/images/OpenWrt%20-%20Article%20-%20Lemberg%20Solutions.png?itok=OyOOQJR9">
 <meta property="article:published_time" content="2023-06-06T12:32:18.000Z">
-<meta property="article:modified_time" content="2024-09-15T07:50:39.382Z">
+<meta property="article:modified_time" content="2024-09-15T07:50:39.000Z">
 <meta property="article:author" content="司晓龙">
 <meta property="article:tag" content="OpenWRT">
 <meta property="article:tag" content="计算机网络">
@@ -272,23 +272,23 @@
 <p>过于折腾，在有了一台群晖后我个人已弃用此方法。</p>
 </blockquote>
 <span id="more"></span>
-<h2 id="安装相关软件">安装相关软件</h2>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">opkg update</span><br><span class="line">opkg install lighttpd lighttpd-mod-auth lighttpd-mod-authn_file lighttpd-mod-webdav</span><br></pre></td></tr></table></figure>
-<h2 id="配置Lighttpd端口号">配置Lighttpd端口号</h2>
-<blockquote>
+
+<h2 id="安装相关软件"><a href="#安装相关软件" class="headerlink" title="安装相关软件"></a>安装相关软件</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">opkg update</span><br><span class="line">opkg install lighttpd lighttpd-mod-auth lighttpd-mod-authn_file lighttpd-mod-webdav</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置Lighttpd端口号"><a href="#配置Lighttpd端口号" class="headerlink" title="配置Lighttpd端口号"></a>配置Lighttpd端口号</h2><blockquote>
 <p>为什么要这么做？</p>
 </blockquote>
 <blockquote>
 <p>因为Lighttpd的默认端口号为80，与LuCI的默认端口号冲突。后续启用Lighttpd会导致LuCI无法正常访问（即便WebDAV可以使用）。</p>
 </blockquote>
 <p>修改Lighttpd的配置文件：<code>/etc/lighttpd/lighttpd.conf</code>；</p>
-<p>在其中添加/修改下行：</p>
+<p>在其中添加&#x2F;修改下行：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">server.port = &lt;PORT&gt;</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>此处的<code>&lt;PORT&gt;</code>为你想要设置的端口号。</p>
 </blockquote>
-<h2 id="配置Lighttpd">配置Lighttpd</h2>
-<blockquote>
+<h2 id="配置Lighttpd"><a href="#配置Lighttpd" class="headerlink" title="配置Lighttpd"></a>配置Lighttpd</h2><blockquote>
 <p>此处假设你要共享的目录为：<code>/mnt/disk</code></p>
 <p><strong>注意：下方的配置为映射整个磁盘分区的方法，这个做法在我自己的软路由上成功实现了，但是亦有说法称不能对磁盘根目录进行映射，并且我在其他软路由上也未能成功配置。</strong></p>
 <p><strong>若有需要，建议“配置Lighttpd”这一步跟随官方教程。区别在于官方教程映射的是某个具体的目录，而非整块分区。</strong></p>
@@ -300,25 +300,24 @@
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chown</span> http:www-data /mnt/disk /var/lib/lighttpd</span><br></pre></td></tr></table></figure>
 <p>向配置文件写入配置（注意，配置中的内容要根据具体情况修改，详见下方说明）</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> &lt;&lt; <span class="string">&quot;EOF&quot;</span> &gt; /etc/lighttpd/conf.d/99-disk.conf</span><br><span class="line"><span class="variable">$HTTP</span>[<span class="string">&quot;url&quot;</span>] =~ <span class="string">&quot;^/disk($|/)&quot;</span> &#123;</span><br><span class="line">  server.document-root := <span class="string">&quot;/mnt&quot;</span></span><br><span class="line">  auth.backend = <span class="string">&quot;plain&quot;</span></span><br><span class="line">  auth.backend.plain.userfile = <span class="string">&quot;/etc/lighttpd/webdav.shadow&quot;</span></span><br><span class="line">  auth.require = (</span><br><span class="line">    <span class="string">&quot;/disk&quot;</span> =&gt; (<span class="string">&quot;method&quot;</span> =&gt; <span class="string">&quot;basic&quot;</span>, <span class="string">&quot;realm&quot;</span> =&gt; <span class="string">&quot;disk&quot;</span>, <span class="string">&quot;require&quot;</span> =&gt; <span class="string">&quot;valid-user&quot;</span>)</span><br><span class="line">  )</span><br><span class="line">  auth.cache = (<span class="string">&quot;max-age&quot;</span> =&gt; <span class="string">&quot;3600&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
 <p>这里最后一个命令可能需要改动的地方有：</p>
 <ul>
 <li>第三行的<code>/mnt</code>，需要改为你要共享的根目录，这里是一般磁盘挂载的目录。</li>
 <li>第二行的一个、第七行的两个<code>disk</code>，需要改为你要共享的子目录。</li>
 </ul>
 <p>这里的配置含义是，将<code>/mnt/disk</code>目录通过WebDAV共享，日后可以通过<code>http://&lt;IP&gt;:&lt;PORT&gt;/disk</code>的形式访问。</p>
-<h2 id="设置密码">设置密码</h2>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&lt;youruser&gt;:&lt;somesecret&gt;&quot;</span> &gt; /etc/lighttpd/webdav.shadow</span><br></pre></td></tr></table></figure>
+<h2 id="设置密码"><a href="#设置密码" class="headerlink" title="设置密码"></a>设置密码</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&lt;youruser&gt;:&lt;somesecret&gt;&quot;</span> &gt; /etc/lighttpd/webdav.shadow</span><br></pre></td></tr></table></figure>
+
 <p>其中<code>&lt;youruser&gt;</code>为用户名，<code>&lt;somesecret&gt;</code>为密码。</p>
 <blockquote>
 <p><strong>注意</strong>：这个密码未经编码，并以明文形式保存在路由器上（以确保更好的性能）。如果黑客可以访问该文件，它可以看到您的密码。所以不要在这里放置您在其他任何地方使用的密码。</p>
 </blockquote>
-<h2 id="重启Lighttpd">重启Lighttpd</h2>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/lighttpd restart</span><br></pre></td></tr></table></figure>
-<h2 id="关于Windows映射WebDAV">关于Windows映射WebDAV</h2>
-<p>在某些版本的Windows中，默认只支持映射HTTPS协议的WebDAV（即WebDAVs），并且WebDAV驱动器的最大文件大小被限制为50MB。</p>
+<h2 id="重启Lighttpd"><a href="#重启Lighttpd" class="headerlink" title="重启Lighttpd"></a>重启Lighttpd</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/lighttpd restart</span><br></pre></td></tr></table></figure>
+
+<h2 id="关于Windows映射WebDAV"><a href="#关于Windows映射WebDAV" class="headerlink" title="关于Windows映射WebDAV"></a>关于Windows映射WebDAV</h2><p>在某些版本的Windows中，默认只支持映射HTTPS协议的WebDAV（即WebDAVs），并且WebDAV驱动器的最大文件大小被限制为50MB。</p>
 <p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/SIXiaolong1117/Rules/main/WebDAV_Http_and_File_Size.reg">这个文件</a>可以解除这个限制，并把大小放大到4GB。</p>
-<h2 id="参考">参考</h2>
-<p><a target="_blank" rel="noopener" href="https://openwrt.org/docs/guide-user/services/nas/webdav">WebDAV Share</a></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://openwrt.org/docs/guide-user/services/nas/webdav">WebDAV Share</a></p>
 <p><a target="_blank" rel="noopener" href="https://openwrt.org/docs/guide-user/services/webserver/lighttpd">Lighttpd webserver</a></p>
 <p><a target="_blank" rel="noopener" href="https://social.msdn.microsoft.com/Forums/en-US/1002d0ef-3a3a-4b00-9920-fec0f2db3699/login-to-webdav-folder-doesnt-work-error-code-0x80070043?forum=iissecurity">login to WEBDAV folder doesn’t work Error code 0x80070043</a></p>
 
